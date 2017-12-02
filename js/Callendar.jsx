@@ -7,9 +7,10 @@ class Callendar extends React.Component {
   render() {
     return (
       <div>
-        <CallendarHeader />
-        <GetWeather />
-        <GetPhotos />
+
+        <GetWeather>
+          <CallendarHeader />
+        </GetWeather>
       </div>
     )
   }

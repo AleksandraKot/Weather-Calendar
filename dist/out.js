@@ -22646,9 +22646,11 @@ var Callendar = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_CallendarHeader2.default, null),
-        _react2.default.createElement(_GetWeather2.default, null),
-        _react2.default.createElement(_GetPhotos2.default, null)
+        _react2.default.createElement(
+          _GetWeather2.default,
+          null,
+          _react2.default.createElement(_CallendarHeader2.default, null)
+        )
       );
     }
   }]);
@@ -22671,6 +22673,10 @@ var _react = __webpack_require__(89);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _GetPhotos = __webpack_require__(193);
+
+var _GetPhotos2 = _interopRequireDefault(_GetPhotos);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22684,114 +22690,131 @@ var weatherApiUrl = 'http://api.weatherbit.io/v2.0/current';
 var GetWeather = function (_React$Component) {
   _inherits(GetWeather, _React$Component);
 
-  function GetWeather() {
+  function GetWeather(props) {
     _classCallCheck(this, GetWeather);
 
-    return _possibleConstructorReturn(this, (GetWeather.__proto__ || Object.getPrototypeOf(GetWeather)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (GetWeather.__proto__ || Object.getPrototypeOf(GetWeather)).call(this, props));
+
+    _this.state = {
+      weatherName: null
+    };
+    return _this;
   }
 
   _createClass(GetWeather, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log('loading weather');
+      this.getWeather();
+    }
+  }, {
+    key: 'getWeatherNameByCode',
+    value: function getWeatherNameByCode(weatherCode) {
+      var weatherWordToSearch = void 0;
+      switch (weatherCode) {
+        case '200':
+        case '201':
+        case '202':
+        case '230':
+        case '231':
+        case '232':
+        case '233':
+          {
+            weatherWordToSearch = 'thunderstorm';
+            break;
+          }
+        case '300':
+        case '301':
+        case '302':
+        case '500':
+        case '501':
+        case '502':
+        case '511':
+        case '520':
+        case '521':
+        case '522':
+        case '900':
+          {
+            weatherWordToSearch = 'rain';
+            break;
+          }
+        case '600':
+        case '601':
+        case '602':
+        case '610':
+        case '611':
+        case '612':
+        case '621':
+        case '622':
+        case '623':
+          {
+            weatherWordToSearch = 'snow';
+            break;
+          }
+        case '700':
+        case '711':
+        case '721':
+        case '731':
+        case '741':
+        case '751':
+          {
+            weatherWordToSearch = 'fog';
+            break;
+          }
+        case '800':
+          {
+            weatherWordToSearch = 'sun';
+            break;
+          }
+        case '801':
+        case '802':
+        case '803':
+          {
+            weatherWordToSearch = 'cloudy';
+            break;
+          }
+        case '804':
+          {
+            weatherWordToSearch = 'overcast clouds';
+            break;
+          }
+      }
+      console.log(weatherWordToSearch);
+      return weatherWordToSearch;
+    }
+  }, {
+    key: 'getWeatherName',
+    value: function getWeatherName(data) {
+      var weatherCode = data.data[0].weather.code;
+      console.log(weatherCode);
+      var weatherName = this.getWeatherNameByCode(weatherCode);
+      return weatherName;
+    }
+  }, {
+    key: 'getWeather',
+    value: function getWeather() {
+      var _this2 = this;
+
+      fetch(weatherApiUrl + '?key=758cdf875de14d1aa6cd09b0da23303b&ip=auto', {
+        method: 'GET'
+      }).then(function (resp) {
+        if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
+      }).then(function (data) {
+        console.log(data);
+        _this2.setState({ weatherName: _this2.getWeatherName(data) });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      function getWeatherNameByCode(weatherCode) {
-        var weatherWordToSearch = void 0;
-        switch (weatherCode) {
-          case '200':
-          case '201':
-          case '202':
-          case '230':
-          case '231':
-          case '232':
-          case '233':
-            {
-              weatherWordToSearch = 'thunderstorm';
-              break;
-            }
-          case '300':
-          case '301':
-          case '302':
-          case '500':
-          case '501':
-          case '502':
-          case '511':
-          case '520':
-          case '521':
-          case '522':
-          case '900':
-            {
-              weatherWordToSearch = 'rain';
-              break;
-            }
-          case '600':
-          case '601':
-          case '602':
-          case '610':
-          case '611':
-          case '612':
-          case '621':
-          case '622':
-          case '623':
-            {
-              weatherWordToSearch = 'snow';
-              break;
-            }
-          case '700':
-          case '711':
-          case '721':
-          case '731':
-          case '741':
-          case '751':
-            {
-              weatherWordToSearch = 'fog';
-              break;
-            }
-          case '800':
-            {
-              weatherWordToSearch = 'sun';
-              break;
-            }
-          case '801':
-          case '802':
-          case '803':
-            {
-              weatherWordToSearch = 'cloudy';
-              break;
-            }
-          case '804':
-            {
-              weatherWordToSearch = 'overcast clouds';
-              break;
-            }
-        }
-        console.log(weatherWordToSearch);
-        return weatherWordToSearch;
-      }
-
-      function getWeatherName(data) {
-        var weatherCode = data.data[0].weather.code;
-        console.log(weatherCode);
-        var weatherName = getWeatherNameByCode(weatherCode);
-        return weatherName;
-      }
-
-      function getWeather() {
-
-        fetch(weatherApiUrl + '?key=758cdf875de14d1aa6cd09b0da23303b&ip=auto', {
-          method: 'GET'
-        }).then(function (resp) {
-          if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
-        }).then(function (data) {
-          console.log(data);
-          getWeatherName(data);
-        }).catch(function (err) {
-          console.log(err);
-        });
-      }
+      if (this.state.weatherName == null) return null;
 
       return _react2.default.createElement(
-        'div',
-        null,
-        getWeather()
+        _GetPhotos2.default,
+        { weatherName: this.state.weatherName },
+        this.props.children
       );
     }
   }]);
@@ -22838,36 +22861,45 @@ var GetPhotos = function (_React$Component) {
   }
 
   _createClass(GetPhotos, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getPhotoByWeatherCode(this.props.weatherName);
+    }
+  }, {
+    key: 'setBg',
+    value: function setBg(imgUrl) {
+      var container = document.querySelector('.callendar-bg');
+      console.log('container');
+      container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
+    }
+  }, {
+    key: 'getPhotoByWeatherCode',
+    value: function getPhotoByWeatherCode(weatherName) {
+      var _this2 = this;
+
+      fetch(unsplashApiUrl + '?orientation=landscape&query=' + weatherName, {
+        method: 'GET',
+        headers: {
+          'Accept-Version': 'v1',
+          'Authorization': 'Client-ID 29bf2944cb6750f4fbfbf7e7bbaba77278873320c9818797ec049fb991ebeffc'
+        }
+      }).then(function (resp) {
+        if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
+      }).then(function (data) {
+        console.log(data);
+        console.log(data.urls.regular);
+        _this2.setBg(data.urls.regular);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-
-      function setBg(imgUrl) {
-        var container = document.querySelector('.callendar-bg');
-        container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
-      }
-
-      function getPhotoByWeatherCode(code) {
-
-        fetch(unsplashApiUrl + '?orientation=landscape&query=' + code, {
-          method: 'GET',
-          headers: {
-            'Accept-Version': 'v1',
-            'Authorization': 'Client-ID 29bf2944cb6750f4fbfbf7e7bbaba77278873320c9818797ec049fb991ebeffc'
-          }
-        }).then(function (resp) {
-          if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
-        }).then(function (data) {
-          console.log(data);
-          setBg(data.urls.regular);
-        }).catch(function (err) {
-          console.log(err);
-        });
-      }
-
       return _react2.default.createElement(
         'div',
         { className: 'callendar-bg' },
-        getPhotoByWeatherCode()
+        this.props.children
       );
     }
   }]);
@@ -22890,6 +22922,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(89);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Data_month_names = __webpack_require__(196);
+
+var _Data_month_names2 = _interopRequireDefault(_Data_month_names);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22923,7 +22959,7 @@ var CallendarHeader = function (_React$Component) {
         _react2.default.createElement(
           'section',
           { className: 'month-name' },
-          'Gudzie\u0144'
+          _Data_month_names2.default[presentTime.getMonth()]
         ),
         _react2.default.createElement(
           'div',
@@ -22938,6 +22974,15 @@ var CallendarHeader = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = CallendarHeader;
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 /***/ })
 /******/ ]);
