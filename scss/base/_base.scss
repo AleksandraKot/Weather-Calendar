@@ -1,0 +1,294 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Barlow', Arial, sans-serif;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: $baseFontSize;
+  min-width: 100%;
+}
+
+.callendar-bg {
+  min-height: 100vh;
+  padding: 5vh 0;
+  background-color: #d9d9d9;
+  @include breakpoint (desktop) {
+    padding: 10vh 0;
+  }
+}
+
+#callendar-wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  @include breakpoint (desktop) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    max-width: 60vw;
+    max-height: 60vh;
+  }
+
+  .display-today {
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border: 3px solid $primaryColor;
+    width: 95%;
+    padding: 1%;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    @include breakpoint (desktop) {
+      width: 16vmax;
+      max-width: 300px;
+      background-color: $primaryColor;
+      margin: 0;
+    }
+  }
+
+  .today-content-wrapper {
+    width: 93%;
+    padding-bottom: 2%;
+    @include breakpoint (desktop) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .month-and-year {
+    font-size: 10vw;
+    font-weight: 300;
+    @include breakpoint (desktop) {
+      font-size: 2.2vw;
+      color: #fff;
+      padding-bottom: 1%;
+    }
+  }
+
+  .day-container {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    align-items: baseline;
+    @include breakpoint (desktop) {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      align-items: center;
+    }
+
+    .day-name {
+      font-size: 12vw;
+      color: $primaryColor;
+      font-weight: 700;
+      line-height: 12vw;
+      @include breakpoint (desktop) {
+        font-size: 2vmax;
+        order: 1;
+        line-height: 2vmax;
+        color: #fff;
+        padding-top: 0.6vmax;
+      }
+    }
+
+    .day-nb {
+      font-size: 20vw;
+      font-weight: 700;
+      color: $primaryColor;
+      line-height: 12vw;
+      @include breakpoint (desktop) {
+        font-size: 7vmax;
+        order: 0;
+        line-height: 7vmax;
+        color: #fff;
+      }
+    }
+  }
+
+  .day-undeline {
+    width: 95%;
+    height: 1px;
+    background-color: #000;
+    margin: 4% 0 3%;
+    @include breakpoint (desktop) {
+      margin: 8% 0 3.5%;
+      background-color: #fff;
+      width: 98%;
+    }
+  }
+
+  .weather-description {
+    font-size: 6vw;
+    font-weight: 400;
+    font-style: italic;
+    @include breakpoint (desktop) {
+      font-size: 1.4vmax;
+      align-self: flex-start;
+      color: #fff;
+      margin-bottom: 10%;
+      font-weight: 300;
+    }
+  }
+
+  .temperature-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    align-items: flex-end;
+  }
+
+  .temp-label {
+    font-size: 4vw;
+    font-weight: 300;
+    @include breakpoint (desktop) {
+      font-size: 1.3vmax;
+      color: #fff;
+      flex-direction: column;
+    }
+  }
+
+  .degrees {
+    font-size: 8vw;
+    @include breakpoint (desktop) {
+      font-size: 2.2vmax;
+      font-weight: 400;
+    }
+  }
+
+  .weather-icon {
+    &:before {
+      font-family: 'MeteoconsRegular';
+      font-size: 25vw;
+      line-height: 25vw;
+      color: $primaryColor;
+      content: attr(data-icon);
+      @include breakpoint (desktop) {
+        font-size: 4.5vmax;
+        line-height: 4.5vmax;
+        color: #fff;
+        align-self: baseline;
+      }
+    }
+  }
+}
+
+.callendar-body {
+  width: 95%;
+  height: 60vmax;
+  border-radius: 6px;
+  border: 3px solid $primaryColor;
+  margin: 3% auto 0;
+  background-color: #fff;
+  background-color: $callendarBgColor;
+  @include breakpoint (desktop) {
+    margin: 35px 0 0;
+    border-top: 10px solid $primaryColor;
+    border-bottom: 10px solid $primaryColor;
+    border-left: 0;
+    border-right: 0;
+    width: 70%;
+    height: auto;
+  }
+
+  .week-header > ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 10%;
+    width: 100%;
+    padding: 2%;
+
+    .day-of-week {
+      font-size: 3vw;
+      width: 14.2%;
+      @include breakpoint (desktop) {
+        font-size: 1.3vw;
+      }
+    }
+  }
+
+  .week-underline {
+    width: 98%;
+    height: 1px;
+    background-color: #000;
+    margin: 0 auto;
+  }
+
+  .callendar-content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 2% 0 0;
+    @include breakpoint (desktop) {
+      min-height: 30vmax;
+      justify-content: center;
+      align-content: stretch;
+      margin: auto 0;
+    }
+
+    .previous-month-day {
+      @extend %single-day;
+      @include breakpoint (desktop) {
+        font-size: 1.7vw;
+      }
+
+      .previous-month-day-content {
+        background-color: $previousMonthColor;
+        border-radius: 4px;
+        align-self: flex-start;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .single-month-day {
+      @extend %single-day;
+
+      &:nth-child(7n) {
+        color: $secondaryColor;
+      }
+      @include breakpoint (desktop) {
+        font-size: 1.7vw;
+      }
+    }
+
+    .holiday {
+      color: $secondaryColor;
+    }
+
+    .holiday-name {
+      font-size: 0.8em;
+      font-weight: 500;
+      @include breakpoint (desktop) {
+        font-size: 1vw;
+      }
+    }
+  }
+
+  .active {
+    border: 3px solid $primaryColor;
+    border-radius: 4px;
+    background-color: $primaryColor;
+    color: white;
+    @extend %single-day;
+
+    &:nth-child(7n) {
+      color: $secondaryColor;
+    }
+    @include breakpoint (desktop) {
+      font-size: 1.7vw;
+    }
+  }
+}
