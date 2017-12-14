@@ -39350,15 +39350,17 @@ var CallendarContent = function (_React$Component) {
       var monthNumber = date.format('M');
       var year = date.year();
 
-      if (dayOfMonth == 1 && monthNumber == 1) return true; // Nowy Rok
-      if (dayOfMonth == 6 && monthNumber == 1) return true; // Trzech Króli
-      if (dayOfMonth == 1 && monthNumber == 5) return true; // 1 maja
-      if (dayOfMonth == 3 && monthNumber == 5) return true; // 3 maja
-      if (dayOfMonth == 15 && monthNumber == 8) return true; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
-      if (dayOfMonth == 1 && monthNumber == 11) return true; // Dzień Wszystkich Świętych
-      if (dayOfMonth == 11 && monthNumber == 11) return true; // Dzień Niepodległości
-      if (dayOfMonth == 25 && monthNumber == 12) return true; // Boże Narodzenie
-      if (dayOfMonth == 26 && monthNumber == 12) return true; // Boże Narodzenie
+      if (dayOfMonth == 1 && monthNumber == 1) return "Nowy Rok"; // Nowy Rok
+      if (dayOfMonth == 6 && monthNumber == 1) return "Trzech Króli"; // Trzech Króli
+      if (dayOfMonth == 1 && monthNumber == 5) return "Swięto Pracy"; // 1 maja
+      if (dayOfMonth == 3 && monthNumber == 5) return "Święto Konstytucji Trzeciego Maja"; // 3 maja
+      if (dayOfMonth == 15 && monthNumber == 8) return "Wniebowzięcie Najświętszej Marii Panny"; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
+      if (dayOfMonth == 1 && monthNumber == 11) return "Dzień Wszystkich Świętych"; // Dzień Wszystkich Świętych
+      if (dayOfMonth == 11 && monthNumber == 11) return "Dzień Niepodległości"; // Dzień Niepodległości
+      if (dayOfMonth == 24 && monthNumber == 12) return "Wigilia";
+      if (dayOfMonth == 25 && monthNumber == 12) return "Boże Narodzenie"; // Boże Narodzenie
+      if (dayOfMonth == 26 && monthNumber == 12) return "Boże Narodzenie"; // Boże Narodzenie
+      if (dayOfMonth == 31 && monthNumber == 12) return "Sylwester";
 
       var a = year % 19;
       var b = year % 4;
@@ -39368,9 +39370,9 @@ var CallendarContent = function (_React$Component) {
       if (d == 29 && e == 6) d -= 7;
       if (d == 28 && e == 6 && a > 10) d -= 7;
       var easter = (0, _moment2.default)().set({ 'year': year, 'month': 2, 'date': 22 }).add(d + e, 'days');
-      if (date.add(-1, 'days') == easter) return true; // Wielkanoc (poniedziałek)
-      if (date.add(-60, 'days') == easter) return true; // Boże Ciało
-      return false;
+      if (date.add(-1, 'days') == easter) return "Wielkanoc"; // Wielkanoc (poniedziałek)
+      if (date.add(-60, 'days') == easter) return "Boże Ciało"; // Boże Ciało
+      return null;
     }
   }, {
     key: 'render',
@@ -39390,16 +39392,21 @@ var CallendarContent = function (_React$Component) {
       var dayOfMonth = parseInt(myDate.format('D'));
 
       for (var _i = firstWeekdayOfMonth; _i < totalNumberOfDays; _i++) {
-
         daysInCallendarArray.push(_react2.default.createElement(
           'div',
           { key: _i, className: _i === dayOfMonth + firstWeekdayOfMonth - 1 ? "active" : "single-month-day" },
           _react2.default.createElement(
             'span',
             { key: dayNumber, style: { color: this.chceckIfIsHoliday(dayNumber) && '#bf3367' } },
-            dayNumber++
+            dayNumber
+          ),
+          _react2.default.createElement(
+            'span',
+            { className: 'holiday-name', style: { color: '#000' } },
+            this.chceckIfIsHoliday(dayNumber)
           )
         ));
+        dayNumber++;
       }
       return _react2.default.createElement(
         'div',

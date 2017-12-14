@@ -30,8 +30,10 @@ body {
     color: #fff;
     border: 1px solid $secondaryColor;
     border-radius: 6px 0 0 6px;
+    box-shadow: 0 .05em .25em $shadowColor;
     font-size: 1.2vmax;
     font-weight: 300;
+    text-shadow: 0 -.05em .05em $shadowColor;
     position: absolute;
     top: 6vh;
     right: 0;
@@ -44,12 +46,18 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @include breakpoint (tablet) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 2%;
+    min-width: 90vw;
+  }
   @include breakpoint (desktop) {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-start;
     max-width: 60vw;
-    // max-height: 60vh;
   }
 
   .display-today {
@@ -61,7 +69,17 @@ body {
     width: 95%;
     padding: 1%;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: $callendarBgColor;
+    box-shadow: 0 .05em .25em $shadowColor;
+    @include breakpoint (tablet) {
+      text-shadow: 0 .15em .15em $shadowColor;
+      outline: 1px dashed #2f3560;
+      outline-offset: -6px;
+      width: 22vmax;
+      max-width: 300px;
+      background-color: $primaryColor;
+      margin: 0;
+    }
     @include breakpoint (desktop) {
       width: 16vmax;
       max-width: 300px;
@@ -73,6 +91,11 @@ body {
   .today-content-wrapper {
     width: 93%;
     padding-bottom: 2%;
+    @include breakpoint (tablet) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     @include breakpoint (desktop) {
       display: flex;
       flex-direction: column;
@@ -83,8 +106,13 @@ body {
   .month-and-year {
     font-size: 10vw;
     font-weight: 300;
+    @include breakpoint (tablet) {
+      font-size: 3vw;
+      color: #fff;
+      padding-bottom: 1%;
+    }
     @include breakpoint (desktop) {
-      font-size: 2.2vw;
+      font-size: 2vw;
       color: #fff;
       padding-bottom: 1%;
     }
@@ -95,6 +123,12 @@ body {
     justify-content: space-between;
     width: 95%;
     align-items: baseline;
+    @include breakpoint (tablet) {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+      align-items: center;
+    }
     @include breakpoint (desktop) {
       display: flex;
       flex-direction: column;
@@ -106,11 +140,18 @@ body {
       font-size: 12vw;
       color: $primaryColor;
       font-weight: 700;
-      line-height: 12vw;
+      line-height: 1;
+      @include breakpoint (tablet) {
+        font-size: 3vmax;
+        order: 1;
+        line-height: 1;
+        color: #fff;
+        padding-top: 1vmax;
+      }
       @include breakpoint (desktop) {
         font-size: 2vmax;
         order: 1;
-        line-height: 2vmax;
+        line-height: 1;
         color: #fff;
         padding-top: 0.6vmax;
       }
@@ -120,11 +161,17 @@ body {
       font-size: 20vw;
       font-weight: 700;
       color: $primaryColor;
-      line-height: 12vw;
+      line-height: 1.6;
+      @include breakpoint (tablet) {
+        font-size: 9vmax;
+        order: 0;
+        line-height: 1;
+        color: #fff;
+      }
       @include breakpoint (desktop) {
         font-size: 7vmax;
         order: 0;
-        line-height: 7vmax;
+        line-height: 1;
         color: #fff;
       }
     }
@@ -135,6 +182,11 @@ body {
     height: 1px;
     background-color: #000;
     margin: 4% 0 3%;
+    @include breakpoint (tablet) {
+      margin: 8% 0 3.5%;
+      background-color: #fff;
+      width: 98%;
+    }
     @include breakpoint (desktop) {
       margin: 8% 0 3.5%;
       background-color: #fff;
@@ -146,6 +198,13 @@ body {
     font-size: 6vw;
     font-weight: 400;
     font-style: italic;
+    @include breakpoint (tablet) {
+      font-size: 2vmax;
+      align-self: flex-start;
+      color: #fff;
+      margin-bottom: 10%;
+      font-weight: 300;
+    }
     @include breakpoint (desktop) {
       font-size: 1.4vmax;
       align-self: flex-start;
@@ -166,6 +225,11 @@ body {
   .temp-label {
     font-size: 4vw;
     font-weight: 300;
+    @include breakpoint (tablet) {
+      font-size: 2vmax;
+      color: #fff;
+      flex-direction: column;
+    }
     @include breakpoint (desktop) {
       font-size: 1.3vmax;
       color: #fff;
@@ -175,6 +239,10 @@ body {
 
   .degrees {
     font-size: 8vw;
+    @include breakpoint (tablet) {
+      font-size: 3.5vmax;
+      font-weight: 400;
+    }
     @include breakpoint (desktop) {
       font-size: 2.2vmax;
       font-weight: 400;
@@ -188,9 +256,15 @@ body {
       line-height: 25vw;
       color: $primaryColor;
       content: attr(data-icon);
+      @include breakpoint (tablet) {
+        font-size: 6.5vmax;
+        line-height: 1;
+        color: #fff;
+        align-self: baseline;
+      }
       @include breakpoint (desktop) {
         font-size: 4.5vmax;
-        line-height: 4.5vmax;
+        line-height: 1;
         color: #fff;
         align-self: baseline;
       }
@@ -199,21 +273,43 @@ body {
 }
 
 .callendar-body {
+  // position: relative; ////////////////////////
   width: 95%;
-  height: 60vmax;
+  height: 50vmax;
   border-radius: 0 6px 6px 6px;
   border: 3px solid $primaryColor;
   margin: 3% auto 0;
   background-color: #fff;
   background-color: $callendarBgColor;
-  @include breakpoint (desktop) {
+  // background: hsla(0,0%,100%,.25) border-box; /////////////
+  box-shadow: 0 .05em .25em $shadowColor;
+  // &:before {
+  // 	content: '';
+  // 	position: absolute;
+  // 	top: 0; right: 0; bottom: 0; left: 0;
+  // 	margin: -30px;
+  // 	z-index: -1;
+  // 	-webkit-filter: blur(20px);
+  // 	filter: blur(30px);
+  // }
+
+  @include breakpoint (tablet) {
     margin: 35px 0 0;
     border-top: 10px solid $primaryColor;
     border-bottom: 10px solid $primaryColor;
     border-left: 0;
     border-right: 0;
     width: 70%;
-    height: auto;
+    height: 50vmax;
+  }
+  @include breakpoint (desktop) {
+    margin: 35px 0 0;
+    border-top: 10px solid $primaryColor;
+    border-bottom: 10px solid $primaryColor;
+    border-left: 0;
+    border-right: 0;
+    width: 60vw;
+    height: 50vmax;
   }
 
   .week-header > ul {
@@ -227,6 +323,9 @@ body {
     .day-of-week {
       font-size: 3vw;
       width: 14.2%;
+      @include breakpoint (tablet) {
+        font-size: 1.8vw;
+      }
       @include breakpoint (desktop) {
         font-size: 1.3vw;
       }
@@ -246,19 +345,27 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    padding: 2% 0 0;
+    padding: 2% 0 0 0;
+    align-content: stretch;
+    @include breakpoint (tablet) {
+      min-height: 30vmax;
+      justify-content: center;
+      margin: auto 0;
+    }
     @include breakpoint (desktop) {
       min-height: 30vmax;
       justify-content: center;
-      align-content: stretch;
       margin: auto 0;
     }
 
     .previous-month-day {
       @extend %single-day;
-      @include breakpoint (desktop) {
-        font-size: 1.7vw;
-      }
+      // @include breakpoint (tablet) {
+      //   font-size: 1.4vw;
+      // }
+      // @include breakpoint (desktop) {
+      //   font-size: 1.7vw;
+      // }
     }
 
     .single-month-day {
@@ -266,6 +373,9 @@ body {
 
       &:nth-child(7n) {
         color: $secondaryColor;
+      }
+      @include breakpoint (tablet) {
+        font-size: 2vw;
       }
       @include breakpoint (desktop) {
         font-size: 1.7vw;
@@ -279,6 +389,9 @@ body {
     .holiday-name {
       font-size: 0.8em;
       font-weight: 500;
+      @include breakpoint (tablet) {
+       font-size: 1.8vw;
+      }
       @include breakpoint (desktop) {
         font-size: 1vw;
       }
@@ -290,13 +403,22 @@ body {
     border-radius: 4px;
     background-color: $primaryColor;
     color: white;
+    text-shadow: 0 -.05em .05em $shadowColor;
+    outline: 1px dashed #2f3560;
+    outline-offset: -4px;
+    box-shadow: 0 .05em .25em $shadowColor;
     @extend %single-day;
 
     &:nth-child(7n) {
       color: $secondaryColor;
     }
+    @include breakpoint (tablet) {
+      font-size: 2vw;
+      outline-offset: -4px;
+    }
     @include breakpoint (desktop) {
       font-size: 1.7vw;
+      outline-offset: -6px;
     }
   }
 }

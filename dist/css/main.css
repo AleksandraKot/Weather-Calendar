@@ -35,12 +35,12 @@ body {
   min-height: 100vh;
   padding: 5vh 0;
   background-color: #d9d9d9; }
-  @media (min-width: 600px) {
+  @media (min-width: 1200px) {
     .callendar-bg {
       padding: 10vh 0; } }
   .callendar-bg .change-bg {
     display: none; }
-    @media (min-width: 600px) {
+    @media (min-width: 1200px) {
       .callendar-bg .change-bg {
         display: block;
         padding: 10px 20px;
@@ -48,8 +48,10 @@ body {
         color: #fff;
         border: 1px solid #bf3367;
         border-radius: 6px 0 0 6px;
+        box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.7);
         font-size: 1.2vmax;
         font-weight: 300;
+        text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.7);
         position: absolute;
         top: 6vh;
         right: 0; } }
@@ -64,6 +66,13 @@ body {
       flex-direction: row;
       flex-wrap: nowrap;
       align-items: flex-start;
+      margin: 2%;
+      min-width: 90vw; } }
+  @media (min-width: 1200px) {
+    #callendar-wrapper {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: flex-start;
       max-width: 60vw; } }
   #callendar-wrapper .display-today {
     border-radius: 6px 6px 0 6px;
@@ -74,8 +83,18 @@ body {
     width: 95%;
     padding: 1%;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, 0.3); }
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.7); }
     @media (min-width: 600px) {
+      #callendar-wrapper .display-today {
+        text-shadow: 0 0.15em 0.15em rgba(0, 0, 0, 0.7);
+        outline: 1px dashed #2f3560;
+        outline-offset: -6px;
+        width: 22vmax;
+        max-width: 300px;
+        background-color: #5963a9;
+        margin: 0; } }
+    @media (min-width: 1200px) {
       #callendar-wrapper .display-today {
         width: 16vmax;
         max-width: 300px;
@@ -89,12 +108,22 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .today-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center; } }
   #callendar-wrapper .month-and-year {
     font-size: 10vw;
     font-weight: 300; }
     @media (min-width: 600px) {
       #callendar-wrapper .month-and-year {
-        font-size: 2.2vw;
+        font-size: 3vw;
+        color: #fff;
+        padding-bottom: 1%; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .month-and-year {
+        font-size: 2vw;
         color: #fff;
         padding-bottom: 1%; } }
   #callendar-wrapper .day-container {
@@ -108,28 +137,47 @@ body {
         flex-direction: column;
         width: 95%;
         align-items: center; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .day-container {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        align-items: center; } }
     #callendar-wrapper .day-container .day-name {
       font-size: 12vw;
       color: #5963a9;
       font-weight: 700;
-      line-height: 12vw; }
+      line-height: 1; }
       @media (min-width: 600px) {
+        #callendar-wrapper .day-container .day-name {
+          font-size: 3vmax;
+          order: 1;
+          line-height: 1;
+          color: #fff;
+          padding-top: 1vmax; } }
+      @media (min-width: 1200px) {
         #callendar-wrapper .day-container .day-name {
           font-size: 2vmax;
           order: 1;
-          line-height: 2vmax;
+          line-height: 1;
           color: #fff;
           padding-top: 0.6vmax; } }
     #callendar-wrapper .day-container .day-nb {
       font-size: 20vw;
       font-weight: 700;
       color: #5963a9;
-      line-height: 12vw; }
+      line-height: 1.6; }
       @media (min-width: 600px) {
+        #callendar-wrapper .day-container .day-nb {
+          font-size: 9vmax;
+          order: 0;
+          line-height: 1;
+          color: #fff; } }
+      @media (min-width: 1200px) {
         #callendar-wrapper .day-container .day-nb {
           font-size: 7vmax;
           order: 0;
-          line-height: 7vmax;
+          line-height: 1;
           color: #fff; } }
   #callendar-wrapper .day-undeline {
     width: 95%;
@@ -141,11 +189,23 @@ body {
         margin: 8% 0 3.5%;
         background-color: #fff;
         width: 98%; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .day-undeline {
+        margin: 8% 0 3.5%;
+        background-color: #fff;
+        width: 98%; } }
   #callendar-wrapper .weather-description {
     font-size: 6vw;
     font-weight: 400;
     font-style: italic; }
     @media (min-width: 600px) {
+      #callendar-wrapper .weather-description {
+        font-size: 2vmax;
+        align-self: flex-start;
+        color: #fff;
+        margin-bottom: 10%;
+        font-weight: 300; } }
+    @media (min-width: 1200px) {
       #callendar-wrapper .weather-description {
         font-size: 1.4vmax;
         align-self: flex-start;
@@ -163,12 +223,21 @@ body {
     font-weight: 300; }
     @media (min-width: 600px) {
       #callendar-wrapper .temp-label {
+        font-size: 2vmax;
+        color: #fff;
+        flex-direction: column; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .temp-label {
         font-size: 1.3vmax;
         color: #fff;
         flex-direction: column; } }
   #callendar-wrapper .degrees {
     font-size: 8vw; }
     @media (min-width: 600px) {
+      #callendar-wrapper .degrees {
+        font-size: 3.5vmax;
+        font-weight: 400; } }
+    @media (min-width: 1200px) {
       #callendar-wrapper .degrees {
         font-size: 2.2vmax;
         font-weight: 400; } }
@@ -180,19 +249,26 @@ body {
     content: attr(data-icon); }
     @media (min-width: 600px) {
       #callendar-wrapper .weather-icon:before {
+        font-size: 6.5vmax;
+        line-height: 1;
+        color: #fff;
+        align-self: baseline; } }
+    @media (min-width: 1200px) {
+      #callendar-wrapper .weather-icon:before {
         font-size: 4.5vmax;
-        line-height: 4.5vmax;
+        line-height: 1;
         color: #fff;
         align-self: baseline; } }
 
 .callendar-body {
   width: 95%;
-  height: 60vmax;
+  height: 50vmax;
   border-radius: 0 6px 6px 6px;
   border: 3px solid #5963a9;
   margin: 3% auto 0;
   background-color: #fff;
-  background-color: rgba(255, 255, 255, 0.2); }
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.7); }
   @media (min-width: 600px) {
     .callendar-body {
       margin: 35px 0 0;
@@ -201,7 +277,16 @@ body {
       border-left: 0;
       border-right: 0;
       width: 70%;
-      height: auto; } }
+      height: 50vmax; } }
+  @media (min-width: 1200px) {
+    .callendar-body {
+      margin: 35px 0 0;
+      border-top: 10px solid #5963a9;
+      border-bottom: 10px solid #5963a9;
+      border-left: 0;
+      border-right: 0;
+      width: 60vw;
+      height: 50vmax; } }
   .callendar-body .week-header > ul {
     display: flex;
     align-items: center;
@@ -213,6 +298,9 @@ body {
       font-size: 3vw;
       width: 14.2%; }
       @media (min-width: 600px) {
+        .callendar-body .week-header > ul .day-of-week {
+          font-size: 1.8vw; } }
+      @media (min-width: 1200px) {
         .callendar-body .week-header > ul .day-of-week {
           font-size: 1.3vw; } }
   .callendar-body .week-underline {
@@ -226,19 +314,24 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    padding: 2% 0 0; }
+    padding: 2% 0 0 0;
+    align-content: stretch; }
     @media (min-width: 600px) {
       .callendar-body .callendar-content {
         min-height: 30vmax;
         justify-content: center;
-        align-content: stretch;
         margin: auto 0; } }
-    @media (min-width: 600px) {
-      .callendar-body .callendar-content .previous-month-day {
-        font-size: 1.7vw; } }
+    @media (min-width: 1200px) {
+      .callendar-body .callendar-content {
+        min-height: 30vmax;
+        justify-content: center;
+        margin: auto 0; } }
     .callendar-body .callendar-content .single-month-day:nth-child(7n) {
       color: #bf3367; }
     @media (min-width: 600px) {
+      .callendar-body .callendar-content .single-month-day {
+        font-size: 2vw; } }
+    @media (min-width: 1200px) {
       .callendar-body .callendar-content .single-month-day {
         font-size: 1.7vw; } }
     .callendar-body .callendar-content .holiday {
@@ -248,16 +341,28 @@ body {
       font-weight: 500; }
       @media (min-width: 600px) {
         .callendar-body .callendar-content .holiday-name {
+          font-size: 1.8vw; } }
+      @media (min-width: 1200px) {
+        .callendar-body .callendar-content .holiday-name {
           font-size: 1vw; } }
   .callendar-body .active {
     border: 3px solid #5963a9;
     border-radius: 4px;
     background-color: #5963a9;
-    color: white; }
+    color: white;
+    text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.7);
+    outline: 1px dashed #2f3560;
+    outline-offset: -4px;
+    box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.7); }
     .callendar-body .active:nth-child(7n) {
       color: #bf3367; }
     @media (min-width: 600px) {
       .callendar-body .active {
-        font-size: 1.7vw; } }
+        font-size: 2vw;
+        outline-offset: -4px; } }
+    @media (min-width: 1200px) {
+      .callendar-body .active {
+        font-size: 1.7vw;
+        outline-offset: -6px; } }
 
 /*# sourceMappingURL=main.css.map*/
