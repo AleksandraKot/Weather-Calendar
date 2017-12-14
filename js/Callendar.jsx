@@ -5,8 +5,6 @@ import moment from 'moment';
 const weatherApiUrl = 'http://api.weatherbit.io/v2.0/current';
 const unsplashApiUrl = 'https://api.unsplash.com/photos/random';
 
-
-
 class Callendar extends React.Component {
   constructor(props) {
     super(props);
@@ -30,10 +28,7 @@ class Callendar extends React.Component {
       }
     ).then(data => {
       console.log(data);
-      this.setState({
-        temp: data.data[0].temp,
-        weatherDescription: data.data[0].weather.description
-      });
+      this.setState({temp: data.data[0].temp, weatherDescription: data.data[0].weather.description});
 
       this.getWeatherName(data);
 
@@ -108,9 +103,9 @@ class Callendar extends React.Component {
       case '800':
         {
           weatherInfo = {
-            weatherWordToSearch:'sun',
+            weatherWordToSearch: ' nature sun',
             weatherIcoSymbol: "B"
-        }
+          }
           break;
         }
       case '801':
@@ -119,7 +114,7 @@ class Callendar extends React.Component {
       case '804':
         {
           weatherInfo = {
-            weatherWordToSearch : 'cloudy',
+            weatherWordToSearch: 'cloudy',
             weatherIcoSymbol: "Y"
           }
           break;
@@ -135,14 +130,15 @@ class Callendar extends React.Component {
     let weatherCode = data.data[0].weather.code;
     console.log(weatherCode);
     let weatherInfo = this.getWeatherNameAndIcoByCode(weatherCode);
-    this.getPhotoByWeatherCode(weatherInfo.weatherWordToSearch);
+    this.setState({weatherName: weatherInfo.weatherWordToSearch})
+    this.setBackgroundPhoto();
   }
 
   // Photo API:
 
-  getPhotoByWeatherCode(weatherName) {
+  setBackgroundPhoto() {
 
-    fetch(unsplashApiUrl + '?orientation=landscape&query=' + weatherName, {
+    fetch(unsplashApiUrl + '?orientation=landscape&query=' + this.state.weatherName, {
       method: 'GET',
       headers: {
         'Accept-Version': 'v1',
@@ -168,6 +164,50 @@ class Callendar extends React.Component {
     container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
   }
 
+  handleChangeBgImg = () => {
+    this.setBackgroundPhoto();
+  }
+  // holidays
+  chceckIfIsHoliday(dayNumber) {
+    let date = moment().set('date', dayNumber);
+    let dayOfMonth = date.format("D");
+    let monthNumber = date.format('M');
+    let year = date.year();
+
+    if (dayOfMonth == 1 && monthNumber == 1)
+      return true; // Nowy Rok
+    if (dayOfMonth == 5 && monthNumber == 1)
+      return true; // 1 maja
+    if (dayOfMonth == 5 && monthNumber == 3)
+      return true; // 3 maja
+    if (dayOfMonth == 8 && monthNumber == 15)
+      return true; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
+    if (dayOfMonth == 11 && monthNumber == 1)
+      return true; // Dzień Wszystkich Świętych
+    if (dayOfMonth == 11 && monthNumber == 11)
+      return true; // Dzień Niepodległości
+    if (dayOfMonth == 12 && monthNumber == 25)
+      return true; // Boże Narodzenie
+    if (dayOfMonth == 12 && monthNumber == 26)
+      return true; // Boże Narodzenie
+
+    let a = year % 19;
+    let b = year % 4;
+    let c = year % 7;
+    let d = (a * 19 + 24) % 30;
+    let e = (2 * b + 4 * c + 6 * d + 5) % 7;
+    if (d == 29 && e == 6)
+      d -= 7;
+    if (d == 28 && e == 6 && a > 10)
+      d -= 7;
+    let easter = moment(year, 3, 22).add(d + e, 'days');
+    if (dayOfMonth.add(-1, 'days') == easter)
+      return true; // Wielkanoc (poniedziałek)
+    if (dayOfMonth.add(-60, 'days') == easter)
+      return true; // Boże Ciało
+    return false;
+  }
+
   componentDidMount() {
     console.log('loading weather');
     this.getWeather();
@@ -178,11 +218,11 @@ class Callendar extends React.Component {
       <div className="callendar-bg">
         <div id="callendar-wrapper">
           <DisplayToday temp={this.state.temp} weatherDescription={this.state.weatherDescription} weatherIcoSymbol={this.state.weatherIcoSymbol}/>
-          <CallendarBody />
+          <CallendarBody/>
 
         </div>
+        <button className="change-bg" onClick={this.handleChangeBgImg}>Nie podoba Ci się tło?</button>
       </div>
-
     )
   }
 }

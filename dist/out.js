@@ -38564,6 +38564,10 @@ var Callendar = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Callendar.__proto__ || Object.getPrototypeOf(Callendar)).call(this, props));
 
+    _this.handleChangeBgImg = function () {
+      _this.setBackgroundPhoto();
+    };
+
     _this.state = {
       weatherName: null,
       temp: "",
@@ -38585,10 +38589,7 @@ var Callendar = function (_React$Component) {
         if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
       }).then(function (data) {
         console.log(data);
-        _this2.setState({
-          temp: data.data[0].temp,
-          weatherDescription: data.data[0].weather.description
-        });
+        _this2.setState({ temp: data.data[0].temp, weatherDescription: data.data[0].weather.description });
 
         _this2.getWeatherName(data);
       }).catch(function (err) {
@@ -38664,7 +38665,7 @@ var Callendar = function (_React$Component) {
         case '800':
           {
             weatherInfo = {
-              weatherWordToSearch: 'sun',
+              weatherWordToSearch: ' nature sun',
               weatherIcoSymbol: "B"
             };
             break;
@@ -38692,17 +38693,18 @@ var Callendar = function (_React$Component) {
       var weatherCode = data.data[0].weather.code;
       console.log(weatherCode);
       var weatherInfo = this.getWeatherNameAndIcoByCode(weatherCode);
-      this.getPhotoByWeatherCode(weatherInfo.weatherWordToSearch);
+      this.setState({ weatherName: weatherInfo.weatherWordToSearch });
+      this.setBackgroundPhoto();
     }
 
     // Photo API:
 
   }, {
-    key: 'getPhotoByWeatherCode',
-    value: function getPhotoByWeatherCode(weatherName) {
+    key: 'setBackgroundPhoto',
+    value: function setBackgroundPhoto() {
       var _this3 = this;
 
-      fetch(unsplashApiUrl + '?orientation=landscape&query=' + weatherName, {
+      fetch(unsplashApiUrl + '?orientation=landscape&query=' + this.state.weatherName, {
         method: 'GET',
         headers: {
           'Accept-Version': 'v1',
@@ -38725,6 +38727,37 @@ var Callendar = function (_React$Component) {
       container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
     }
   }, {
+    key: 'chceckIfIsHoliday',
+
+    // holidays
+    value: function chceckIfIsHoliday(dayNumber) {
+      var date = (0, _moment2.default)().set('date', dayNumber);
+      var dayOfMonth = date.format("D");
+      var monthNumber = date.format('M');
+      var year = date.year();
+
+      if (dayOfMonth == 1 && monthNumber == 1) return true; // Nowy Rok
+      if (dayOfMonth == 5 && monthNumber == 1) return true; // 1 maja
+      if (dayOfMonth == 5 && monthNumber == 3) return true; // 3 maja
+      if (dayOfMonth == 8 && monthNumber == 15) return true; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
+      if (dayOfMonth == 11 && monthNumber == 1) return true; // Dzień Wszystkich Świętych
+      if (dayOfMonth == 11 && monthNumber == 11) return true; // Dzień Niepodległości
+      if (dayOfMonth == 12 && monthNumber == 25) return true; // Boże Narodzenie
+      if (dayOfMonth == 12 && monthNumber == 26) return true; // Boże Narodzenie
+
+      var a = year % 19;
+      var b = year % 4;
+      var c = year % 7;
+      var d = (a * 19 + 24) % 30;
+      var e = (2 * b + 4 * c + 6 * d + 5) % 7;
+      if (d == 29 && e == 6) d -= 7;
+      if (d == 28 && e == 6 && a > 10) d -= 7;
+      var easter = (0, _moment2.default)(year, 3, 22).add(d + e, 'days');
+      if (dayOfMonth.add(-1, 'days') == easter) return true; // Wielkanoc (poniedziałek)
+      if (dayOfMonth.add(-60, 'days') == easter) return true; // Boże Ciało
+      return false;
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       console.log('loading weather');
@@ -38741,6 +38774,11 @@ var Callendar = function (_React$Component) {
           { id: 'callendar-wrapper' },
           _react2.default.createElement(_DisplayToday2.default, { temp: this.state.temp, weatherDescription: this.state.weatherDescription, weatherIcoSymbol: this.state.weatherIcoSymbol }),
           _react2.default.createElement(_CallendarBody2.default, null)
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'change-bg', onClick: this.handleChangeBgImg },
+          'Nie podoba Ci si\u0119 t\u0142o?'
         )
       );
     }
@@ -39302,6 +39340,39 @@ var CallendarContent = function (_React$Component) {
   }
 
   _createClass(CallendarContent, [{
+    key: 'chceckIfIsHoliday',
+
+
+    // Check holiday days
+    value: function chceckIfIsHoliday(dayNumber) {
+      var date = (0, _moment2.default)().set('date', dayNumber);
+      var dayOfMonth = date.format("D");
+      var monthNumber = date.format('M');
+      var year = date.year();
+
+      if (dayOfMonth == 1 && monthNumber == 1) return true; // Nowy Rok
+      if (dayOfMonth == 6 && monthNumber == 1) return true; // Trzech Króli
+      if (dayOfMonth == 1 && monthNumber == 5) return true; // 1 maja
+      if (dayOfMonth == 3 && monthNumber == 5) return true; // 3 maja
+      if (dayOfMonth == 15 && monthNumber == 8) return true; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
+      if (dayOfMonth == 1 && monthNumber == 11) return true; // Dzień Wszystkich Świętych
+      if (dayOfMonth == 11 && monthNumber == 11) return true; // Dzień Niepodległości
+      if (dayOfMonth == 25 && monthNumber == 12) return true; // Boże Narodzenie
+      if (dayOfMonth == 26 && monthNumber == 12) return true; // Boże Narodzenie
+
+      var a = year % 19;
+      var b = year % 4;
+      var c = year % 7;
+      var d = (a * 19 + 24) % 30;
+      var e = (2 * b + 4 * c + 6 * d + 5) % 7;
+      if (d == 29 && e == 6) d -= 7;
+      if (d == 28 && e == 6 && a > 10) d -= 7;
+      var easter = (0, _moment2.default)().set({ 'year': year, 'month': 2, 'date': 22 }).add(d + e, 'days');
+      if (date.add(-1, 'days') == easter) return true; // Wielkanoc (poniedziałek)
+      if (date.add(-60, 'days') == easter) return true; // Boże Ciało
+      return false;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var firstWeekdayOfMonth = (0, _moment2.default)().startOf('month').day();
@@ -39310,11 +39381,7 @@ var CallendarContent = function (_React$Component) {
       var totalNumberOfDays = firstWeekdayOfMonth + numberOfMonthDays;
 
       for (var i = 1; i < firstWeekdayOfMonth; i++) {
-        daysInCallendarArray.push(_react2.default.createElement(
-          'div',
-          { key: i, className: 'previous-month-day' },
-          _react2.default.createElement('div', { className: 'previous-month-day-content' })
-        ));
+        daysInCallendarArray.push(_react2.default.createElement('div', { key: i, className: 'previous-month-day' }));
       }
 
       var dayNumber = 1;
@@ -39323,17 +39390,17 @@ var CallendarContent = function (_React$Component) {
       var dayOfMonth = parseInt(myDate.format('D'));
 
       for (var _i = firstWeekdayOfMonth; _i < totalNumberOfDays; _i++) {
+
         daysInCallendarArray.push(_react2.default.createElement(
           'div',
           { key: _i, className: _i === dayOfMonth + firstWeekdayOfMonth - 1 ? "active" : "single-month-day" },
           _react2.default.createElement(
             'span',
-            { key: dayNumber },
+            { key: dayNumber, style: { color: this.chceckIfIsHoliday(dayNumber) && '#bf3367' } },
             dayNumber++
           )
         ));
       }
-
       return _react2.default.createElement(
         'div',
         { className: 'callendar-content' },
