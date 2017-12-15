@@ -1,17 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 
+moment.locale('pl');
+
 class WeekHeader extends React.Component {
-  render() {
-    moment.locale('pl');
-
-    let weekArray = [
-        "Pon.", "Wt.", "Śr.", "Czw.", "Pt.", "Sob.", "Niedz."
+  constructor(props) {
+    super(props);
+    this.weekArray = [
+      "Pon.",
+      "Wt.",
+      "Śr.",
+      "Czw.",
+      "Pt.",
+      "Sob.",
+      "Niedz."
     ];
+  }
 
+  render() {
 
-
-    let result = weekArray.map((el) => {
+    let result = this.weekArray.map((el) => {
       return (
         <li key={el} className="day-of-week">{el}</li>
       )
@@ -20,7 +28,7 @@ class WeekHeader extends React.Component {
     return (
       <div className="week-header">
         <ul>
-        {result}
+          {result}
         </ul>
         <div className='week-underline'></div>
       </div>

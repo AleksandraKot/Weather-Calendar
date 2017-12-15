@@ -38727,37 +38727,6 @@ var Callendar = function (_React$Component) {
       container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
     }
   }, {
-    key: 'chceckIfIsHoliday',
-
-    // holidays
-    value: function chceckIfIsHoliday(dayNumber) {
-      var date = (0, _moment2.default)().set('date', dayNumber);
-      var dayOfMonth = date.format("D");
-      var monthNumber = date.format('M');
-      var year = date.year();
-
-      if (dayOfMonth == 1 && monthNumber == 1) return true; // Nowy Rok
-      if (dayOfMonth == 5 && monthNumber == 1) return true; // 1 maja
-      if (dayOfMonth == 5 && monthNumber == 3) return true; // 3 maja
-      if (dayOfMonth == 8 && monthNumber == 15) return true; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
-      if (dayOfMonth == 11 && monthNumber == 1) return true; // Dzień Wszystkich Świętych
-      if (dayOfMonth == 11 && monthNumber == 11) return true; // Dzień Niepodległości
-      if (dayOfMonth == 12 && monthNumber == 25) return true; // Boże Narodzenie
-      if (dayOfMonth == 12 && monthNumber == 26) return true; // Boże Narodzenie
-
-      var a = year % 19;
-      var b = year % 4;
-      var c = year % 7;
-      var d = (a * 19 + 24) % 30;
-      var e = (2 * b + 4 * c + 6 * d + 5) % 7;
-      if (d == 29 && e == 6) d -= 7;
-      if (d == 28 && e == 6 && a > 10) d -= 7;
-      var easter = (0, _moment2.default)(year, 3, 22).add(d + e, 'days');
-      if (dayOfMonth.add(-1, 'days') == easter) return true; // Wielkanoc (poniedziałek)
-      if (dayOfMonth.add(-60, 'days') == easter) return true; // Boże Ciało
-      return false;
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       console.log('loading weather');
@@ -38777,7 +38746,7 @@ var Callendar = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { className: 'change-bg', onClick: this.handleChangeBgImg },
+          { className: 'button-change-bg', onClick: this.handleChangeBgImg },
           'Nie podoba Ci si\u0119 t\u0142o?'
         )
       );
@@ -38814,25 +38783,32 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var currentDate = (0, _moment2.default)();
+
 var DisplayToday = function (_React$Component) {
   _inherits(DisplayToday, _React$Component);
 
-  function DisplayToday() {
+  function DisplayToday(props) {
     _classCallCheck(this, DisplayToday);
 
-    return _possibleConstructorReturn(this, (DisplayToday.__proto__ || Object.getPrototypeOf(DisplayToday)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (DisplayToday.__proto__ || Object.getPrototypeOf(DisplayToday)).call(this, props));
+
+    _this.state = {
+      dayOfMonth: currentDate.format('D'),
+      weekDayName: currentDate.format('dddd'),
+      monthName: currentDate.format('MMMM').toUpperCase(),
+      year: currentDate.format('YY')
+    };
+    return _this;
   }
+  // state prepared for future features
+
 
   _createClass(DisplayToday, [{
     key: 'render',
     value: function render() {
       _moment2.default.locale('pl');
-      var myDate = (0, _moment2.default)();
-      var dayOfMonth = myDate.format('D');
 
-      var weekDayName = myDate.format('dddd');
-      var monthName = myDate.format('MMMM').toUpperCase();
-      var year = myDate.format('YY');
       return _react2.default.createElement(
         'section',
         { className: 'display-today' },
@@ -38842,9 +38818,9 @@ var DisplayToday = function (_React$Component) {
           _react2.default.createElement(
             'span',
             { className: 'month-and-year' },
-            monthName,
-            ' \'',
-            year
+            this.state.monthName,
+            '\'',
+            this.state.year
           ),
           _react2.default.createElement(
             'div',
@@ -38852,12 +38828,12 @@ var DisplayToday = function (_React$Component) {
             _react2.default.createElement(
               'span',
               { className: 'day-name' },
-              weekDayName
+              this.state.weekDayName
             ),
             _react2.default.createElement(
               'span',
               { className: 'day-nb' },
-              dayOfMonth
+              this.state.dayOfMonth
             )
           ),
           _react2.default.createElement('div', { className: 'day-undeline' }),
@@ -39263,23 +39239,25 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+_moment2.default.locale('pl');
+
 var WeekHeader = function (_React$Component) {
   _inherits(WeekHeader, _React$Component);
 
-  function WeekHeader() {
+  function WeekHeader(props) {
     _classCallCheck(this, WeekHeader);
 
-    return _possibleConstructorReturn(this, (WeekHeader.__proto__ || Object.getPrototypeOf(WeekHeader)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (WeekHeader.__proto__ || Object.getPrototypeOf(WeekHeader)).call(this, props));
+
+    _this.weekArray = ["Pon.", "Wt.", "Śr.", "Czw.", "Pt.", "Sob.", "Niedz."];
+    return _this;
   }
 
   _createClass(WeekHeader, [{
     key: 'render',
     value: function render() {
-      _moment2.default.locale('pl');
 
-      var weekArray = ["Pon.", "Wt.", "Śr.", "Czw.", "Pt.", "Sob.", "Niedz."];
-
-      var result = weekArray.map(function (el) {
+      var result = this.weekArray.map(function (el) {
         return _react2.default.createElement(
           'li',
           { key: el, className: 'day-of-week' },
@@ -39350,16 +39328,16 @@ var CallendarContent = function (_React$Component) {
       var monthNumber = date.format('M');
       var year = date.year();
 
-      if (dayOfMonth == 1 && monthNumber == 1) return "Nowy Rok"; // Nowy Rok
-      if (dayOfMonth == 6 && monthNumber == 1) return "Trzech Króli"; // Trzech Króli
-      if (dayOfMonth == 1 && monthNumber == 5) return "Swięto Pracy"; // 1 maja
-      if (dayOfMonth == 3 && monthNumber == 5) return "Święto Konstytucji Trzeciego Maja"; // 3 maja
-      if (dayOfMonth == 15 && monthNumber == 8) return "Wniebowzięcie Najświętszej Marii Panny"; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
-      if (dayOfMonth == 1 && monthNumber == 11) return "Dzień Wszystkich Świętych"; // Dzień Wszystkich Świętych
-      if (dayOfMonth == 11 && monthNumber == 11) return "Dzień Niepodległości"; // Dzień Niepodległości
+      if (dayOfMonth == 1 && monthNumber == 1) return "Nowy Rok";
+      if (dayOfMonth == 6 && monthNumber == 1) return "Trzech Króli";
+      if (dayOfMonth == 1 && monthNumber == 5) return "Swięto Pracy";
+      if (dayOfMonth == 3 && monthNumber == 5) return "Święto Konstytucji Trzeciego Maja";
+      if (dayOfMonth == 15 && monthNumber == 8) return "Wniebowzięcie Najświętszej Marii Panny";
+      if (dayOfMonth == 1 && monthNumber == 11) return "Dzień Wszystkich Świętych";
+      if (dayOfMonth == 11 && monthNumber == 11) return "Dzień Niepodległości";
       if (dayOfMonth == 24 && monthNumber == 12) return "Wigilia";
-      if (dayOfMonth == 25 && monthNumber == 12) return "Boże Narodzenie"; // Boże Narodzenie
-      if (dayOfMonth == 26 && monthNumber == 12) return "Boże Narodzenie"; // Boże Narodzenie
+      if (dayOfMonth == 25 && monthNumber == 12) return "Boże Narodzenie";
+      if (dayOfMonth == 26 && monthNumber == 12) return "Boże Narodzenie";
       if (dayOfMonth == 31 && monthNumber == 12) return "Sylwester";
 
       var a = year % 19;
@@ -39370,8 +39348,8 @@ var CallendarContent = function (_React$Component) {
       if (d == 29 && e == 6) d -= 7;
       if (d == 28 && e == 6 && a > 10) d -= 7;
       var easter = (0, _moment2.default)().set({ 'year': year, 'month': 2, 'date': 22 }).add(d + e, 'days');
-      if (date.add(-1, 'days') == easter) return "Wielkanoc"; // Wielkanoc (poniedziałek)
-      if (date.add(-60, 'days') == easter) return "Boże Ciało"; // Boże Ciało
+      if (date.add(-1, 'days') == easter) return "Wielkanoc";
+      if (date.add(-60, 'days') == easter) return "Boże Ciało";
       return null;
     }
   }, {
@@ -39397,12 +39375,16 @@ var CallendarContent = function (_React$Component) {
           { key: _i, className: _i === dayOfMonth + firstWeekdayOfMonth - 1 ? "active" : "single-month-day" },
           _react2.default.createElement(
             'span',
-            { key: dayNumber, style: { color: this.chceckIfIsHoliday(dayNumber) && '#bf3367' } },
+            { key: dayNumber, style: {
+                color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'
+              } },
             dayNumber
           ),
           _react2.default.createElement(
             'span',
-            { className: 'holiday-name', style: { color: '#000' } },
+            { className: 'holiday-name', style: {
+                color: '#000'
+              } },
             this.chceckIfIsHoliday(dayNumber)
           )
         ));

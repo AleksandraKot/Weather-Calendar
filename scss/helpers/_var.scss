@@ -1,15 +1,14 @@
 /* Breakpoints */
-
 $mobile: 499px;
 $tablet: 600px;
 $desktop: 1200px;
-
 /*Fonts and colors*/
-
-$baseFontSize: 10px;
+$baseFontSize: 10px; // $primaryColor: #5963a9;
+$secondaryColor: #ff084a;
+$shadowColor: rgba(0,0,0,.5);
 $primaryColor: #5963a9;
-$secondaryColor: #bf3367;
-$shadowColor: rgba(0,0,0,.7);
+$brightTextColor: #FFF8DC;
+$darkTextColor: #111d26;
 $previousMonthColor: rgba(0, 0, 0, 0.3);
 $callendarBgColor: rgba(255, 255, 255, 0.2);
 
@@ -34,4 +33,5 @@ $callendarBgColor: rgba(255, 255, 255, 0.2);
   font-size: 2.8vw;
   padding: 1%;
   font-weight: 600;
+  color: $darkTextColor;
 }

@@ -19,24 +19,28 @@ body {
   padding: 5vh 0;
   background-color: #d9d9d9;
   @include breakpoint (desktop) {
-    padding: 10vh 0;
+    // padding: 10vh 0;
   }
-  .change-bg {
+
+  .button-change-bg {
     display: none;
+    @include breakpoint (tablet) {
+      display: block;
+      padding: 8px 18px;
+      background-color: $secondaryColor;
+      color: #fff;
+      border: 1px solid $secondaryColor;
+      border-radius: 6px 0 0 6px;
+      box-shadow: 0 0.05em 0.25em $shadowColor;
+      font-size: 1.6vmax;
+      font-weight: 300;
+      text-shadow: 0 -.05em 0.05em $shadowColor;
+      position: absolute;
+      top: 3vh;
+      right: 0;
+    }
     @include breakpoint (desktop) {
-    display: block;
-    padding: 10px 20px;
-    background-color: $secondaryColor;
-    color: #fff;
-    border: 1px solid $secondaryColor;
-    border-radius: 6px 0 0 6px;
-    box-shadow: 0 .05em .25em $shadowColor;
-    font-size: 1.2vmax;
-    font-weight: 300;
-    text-shadow: 0 -.05em .05em $shadowColor;
-    position: absolute;
-    top: 6vh;
-    right: 0;
+      font-size: 1.2vmax;
     }
   }
 }
@@ -57,7 +61,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-start;
-    max-width: 60vw;
+    max-height: 70vh;
   }
 
   .display-today {
@@ -70,12 +74,13 @@ body {
     padding: 1%;
     background-color: #fff;
     background-color: $callendarBgColor;
-    box-shadow: 0 .05em .25em $shadowColor;
+    box-shadow: 0 0.05em 0.25em $shadowColor;
     @include breakpoint (tablet) {
-      text-shadow: 0 .15em .15em $shadowColor;
-      outline: 1px dashed #2f3560;
+      color: hsl(210, 13%, 75%);
+      text-shadow: 0 -1px 1px $shadowColor;
+      outline: 1px dashed $darkTextColor;
       outline-offset: -6px;
-      width: 22vmax;
+      width: 23vmax;
       max-width: 300px;
       background-color: $primaryColor;
       margin: 0;
@@ -226,7 +231,7 @@ body {
     font-size: 4vw;
     font-weight: 300;
     @include breakpoint (tablet) {
-      font-size: 2vmax;
+      font-size: 1.8vmax;
       color: #fff;
       flex-direction: column;
     }
@@ -240,7 +245,7 @@ body {
   .degrees {
     font-size: 8vw;
     @include breakpoint (tablet) {
-      font-size: 3.5vmax;
+      font-size: 2.5vmax;
       font-weight: 400;
     }
     @include breakpoint (desktop) {
@@ -257,7 +262,8 @@ body {
       color: $primaryColor;
       content: attr(data-icon);
       @include breakpoint (tablet) {
-        font-size: 6.5vmax;
+        font-size: 5.5vmax;
+        margin-left: 1%;
         line-height: 1;
         color: #fff;
         align-self: baseline;
@@ -282,7 +288,7 @@ body {
   background-color: #fff;
   background-color: $callendarBgColor;
   // background: hsla(0,0%,100%,.25) border-box; /////////////
-  box-shadow: 0 .05em .25em $shadowColor;
+  box-shadow: 0 0.05em 0.25em $shadowColor;
   // &:before {
   // 	content: '';
   // 	position: absolute;
@@ -292,15 +298,14 @@ body {
   // 	-webkit-filter: blur(20px);
   // 	filter: blur(30px);
   // }
-
   @include breakpoint (tablet) {
     margin: 35px 0 0;
     border-top: 10px solid $primaryColor;
     border-bottom: 10px solid $primaryColor;
     border-left: 0;
     border-right: 0;
-    width: 70%;
-    height: 50vmax;
+    width: 80vmax;
+    height: 40vmax;
   }
   @include breakpoint (desktop) {
     margin: 35px 0 0;
@@ -308,8 +313,8 @@ body {
     border-bottom: 10px solid $primaryColor;
     border-left: 0;
     border-right: 0;
-    width: 60vw;
-    height: 50vmax;
+    width: 60vmax;
+    height: 35vmax;
   }
 
   .week-header > ul {
@@ -319,6 +324,7 @@ body {
     height: 10%;
     width: 100%;
     padding: 2%;
+    color: $darkTextColor;
 
     .day-of-week {
       font-size: 3vw;
@@ -345,7 +351,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    padding: 2% 0 0 0;
+    padding: 2% 0 0;
     align-content: stretch;
     @include breakpoint (tablet) {
       min-height: 30vmax;
@@ -360,12 +366,6 @@ body {
 
     .previous-month-day {
       @extend %single-day;
-      // @include breakpoint (tablet) {
-      //   font-size: 1.4vw;
-      // }
-      // @include breakpoint (desktop) {
-      //   font-size: 1.7vw;
-      // }
     }
 
     .single-month-day {
@@ -390,7 +390,7 @@ body {
       font-size: 0.8em;
       font-weight: 500;
       @include breakpoint (tablet) {
-       font-size: 1.8vw;
+        font-size: 1.8vw;
       }
       @include breakpoint (desktop) {
         font-size: 1vw;
@@ -403,10 +403,10 @@ body {
     border-radius: 4px;
     background-color: $primaryColor;
     color: white;
-    text-shadow: 0 -.05em .05em $shadowColor;
-    outline: 1px dashed #2f3560;
+    text-shadow: 0 -.05em 0.05em $shadowColor;
+    outline: 1px dashed $darkTextColor;
     outline-offset: -4px;
-    box-shadow: 0 .05em .25em $shadowColor;
+    box-shadow: 0 0.05em 0.25em $shadowColor;
     @extend %single-day;
 
     &:nth-child(7n) {

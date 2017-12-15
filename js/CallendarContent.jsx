@@ -11,25 +11,25 @@ class CallendarContent extends React.Component {
     let year = date.year();
 
     if (dayOfMonth == 1 && monthNumber == 1)
-      return "Nowy Rok"; // Nowy Rok
+      return "Nowy Rok";
     if (dayOfMonth == 6 && monthNumber == 1)
-      return "Trzech Króli"; // Trzech Króli
-    if (dayOfMonth == 1 && monthNumber ==5)
-      return "Swięto Pracy"; // 1 maja
+      return "Trzech Króli";
+    if (dayOfMonth == 1 && monthNumber == 5)
+      return "Swięto Pracy";
     if (dayOfMonth == 3 && monthNumber == 5)
-      return "Święto Konstytucji Trzeciego Maja"; // 3 maja
+      return "Święto Konstytucji Trzeciego Maja";
     if (dayOfMonth == 15 && monthNumber == 8)
-      return "Wniebowzięcie Najświętszej Marii Panny"; // Wniebowzięcie Najświętszej Marii Panny, Święto Wojska Polskiego
+      return "Wniebowzięcie Najświętszej Marii Panny";
     if (dayOfMonth == 1 && monthNumber == 11)
-      return "Dzień Wszystkich Świętych"; // Dzień Wszystkich Świętych
+      return "Dzień Wszystkich Świętych";
     if (dayOfMonth == 11 && monthNumber == 11)
-      return "Dzień Niepodległości"; // Dzień Niepodległości
+      return "Dzień Niepodległości";
     if (dayOfMonth == 24 && monthNumber == 12)
-    return "Wigilia";
+      return "Wigilia";
     if (dayOfMonth == 25 && monthNumber == 12)
-      return "Boże Narodzenie"; // Boże Narodzenie
+      return "Boże Narodzenie";
     if (dayOfMonth == 26 && monthNumber == 12)
-      return "Boże Narodzenie"; // Boże Narodzenie
+      return "Boże Narodzenie";
     if (dayOfMonth == 31 && monthNumber == 12)
       return "Sylwester";
 
@@ -42,14 +42,13 @@ class CallendarContent extends React.Component {
       d -= 7;
     if (d == 28 && e == 6 && a > 10)
       d -= 7;
-    let easter = moment().set({'year': year, 'month': 2, 'date': 22}).add(d+e, 'days');
+    let easter = moment().set({'year': year, 'month': 2, 'date': 22}).add(d + e, 'days');
     if (date.add(-1, 'days') == easter)
-      return "Wielkanoc"; // Wielkanoc (poniedziałek)
+      return "Wielkanoc";
     if (date.add(-60, 'days') == easter)
-      return "Boże Ciało"; // Boże Ciało
+      return "Boże Ciało";
     return null;
   }
-
 
   render() {
     let firstWeekdayOfMonth = moment().startOf('month').day();
@@ -70,9 +69,15 @@ class CallendarContent extends React.Component {
 
     for (let i = firstWeekdayOfMonth; i < totalNumberOfDays; i++) {
       daysInCallendarArray.push(
-        <div  key={i} className={i===dayOfMonth+firstWeekdayOfMonth-1?"active":"single-month-day"}>
-          <span key={dayNumber} style={{color: this.chceckIfIsHoliday(dayNumber)&&'#bf3367'}}>{dayNumber}</span>
-          <span className="holiday-name" style={{color:'#000'}}>{this.chceckIfIsHoliday(dayNumber)}</span>
+        <div key={i} className={i === dayOfMonth + firstWeekdayOfMonth - 1
+          ? "active"
+          : "single-month-day"}>
+          <span key={dayNumber} style={{
+            color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'
+          }}>{dayNumber}</span>
+          <span className="holiday-name" style={{
+            color: '#000'
+          }}>{this.chceckIfIsHoliday(dayNumber)}</span>
         </div>
       );
       dayNumber++;
