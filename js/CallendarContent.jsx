@@ -1,7 +1,15 @@
 import React from 'react';
 import moment from 'moment';
+import WeatherHelper from './WeatherHelper.js';
+moment.locale('pl');
 
 class CallendarContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDay: ""
+    }
+  }
 
   // Check holiday days
   chceckIfIsHoliday(dayNumber) {
@@ -56,25 +64,40 @@ class CallendarContent extends React.Component {
     let numberOfMonthDays = moment().daysInMonth();
     let totalNumberOfDays = firstWeekdayOfMonth + numberOfMonthDays;
 
+    if (!this.props.weather16day) {
+      return null;
+    }
+
+    console.log("Ola", this.props.weather16day);
+
     for (let i = 1; i < firstWeekdayOfMonth; i++) {
       daysInCallendarArray.push(
         <div key={i} className="previous-month-day"></div>
-      )
+      );
     }
 
     let dayNumber = 1;
-    moment.locale('pl');
     let myDate = moment();
     let dayOfMonth = parseInt(myDate.format('D'));
 
     for (let i = firstWeekdayOfMonth; i < totalNumberOfDays; i++) {
+
+      let weatherIcon = '';
+      if (i > dayOfMonth + firstWeekdayOfMonth - 1) {
+        let dateInfo = this.props.weather16day[i-dayOfMonth-firstWeekdayOfMonth+1];
+        weatherIcon = WeatherHelper.getWeatherNameAndIcoByCode(dateInfo.weather.code).weatherIcoSymbol;
+        console.log(i, dayOfMonth, dateInfo);
+      }
+
       daysInCallendarArray.push(
         <div key={i} className={i === dayOfMonth + firstWeekdayOfMonth - 1
-          ? "active"
+          ? "today"
           : "single-month-day"}>
+
           <span key={dayNumber} style={{
             color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'
-          }}>{dayNumber}</span>
+          }}>{dayNumber} <span className="weather-icon-s" data-icon={weatherIcon}></span></span>
+
           <span className="holiday-name" style={{
             color: '#000'
           }}>{this.chceckIfIsHoliday(dayNumber)}</span>
@@ -86,6 +109,6 @@ class CallendarContent extends React.Component {
       <div className="callendar-content">{daysInCallendarArray}</div>
     );
   }
+  }
 
-}
 module.exports = CallendarContent;

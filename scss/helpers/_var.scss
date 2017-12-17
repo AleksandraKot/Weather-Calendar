@@ -7,18 +7,17 @@ $baseFontSize: 10px; // $primaryColor: #5963a9;
 $secondaryColor: #ff084a;
 $shadowColor: rgba(0,0,0,.5);
 $primaryColor: #5963a9;
-$brightTextColor: #FFF8DC;
 $darkTextColor: #111d26;
 $previousMonthColor: rgba(0, 0, 0, 0.3);
 $callendarBgColor: rgba(255, 255, 255, 0.2);
 
 @font-face {
     font-family: 'MeteoconsRegular';
-    src: url('fonts/meteocons-webfont.eot');
-    src: url('fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/meteocons-webfont.woff') format('woff'),
-         url('fonts/meteocons-webfont.ttf') format('truetype'),
-         url('fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+    src: url('../scss/fonts/meteocons-webfont.eot');
+    src: url('../scss/fonts/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../scss/fonts/meteocons-webfont.woff') format('woff'),
+         url('../scss/fonts/meteocons-webfont.ttf') format('truetype'),
+         url('../scss/fonts/meteocons-webfont.svg#MeteoconsRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }

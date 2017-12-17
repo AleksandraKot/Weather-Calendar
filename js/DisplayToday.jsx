@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+
+moment.locale('pl');
 const currentDate = moment();
 
 class DisplayToday extends React.Component {
@@ -12,9 +14,9 @@ class DisplayToday extends React.Component {
       year: currentDate.format('YY')
     }
   }
-// state prepared for future features
+  // state prepared for future features
   render() {
-    moment.locale('pl');
+
 
     return (
       <section className="display-today">
