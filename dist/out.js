@@ -38692,102 +38692,11 @@ var Callendar = function (_React$Component) {
       }).then(function (data) {
         console.log(data);
         _this2.setState({ temp: data.data[0].temp, weatherDescription: data.data[0].weather.description });
-
         _this2.getWeatherName(data);
       }).catch(function (err) {
         console.log(err);
       });
     }
-    // getWeatherNameAndIcoByCode(weatherCode) {
-    //   let weatherInfo;
-    //   switch (weatherCode) {
-    //     case '200':
-    //     case '201':
-    //     case '202':
-    //     case '230':
-    //     case '231':
-    //     case '232':
-    //     case '233':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: 'thunderstorm',
-    //           weatherIcoSymbol: "0"
-    //         }
-    //         break;
-    //       }
-    //     case '300':
-    //     case '301':
-    //     case '302':
-    //     case '500':
-    //     case '501':
-    //     case '502':
-    //     case '511':
-    //     case '520':
-    //     case '521':
-    //     case '522':
-    //     case '900':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: 'rain',
-    //           weatherIcoSymbol: "R"
-    //         }
-    //         break;
-    //       }
-    //     case '600':
-    //     case '601':
-    //     case '602':
-    //     case '610':
-    //     case '611':
-    //     case '612':
-    //     case '621':
-    //     case '622':
-    //     case '623':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: 'snow',
-    //           weatherIcoSymbol: "W"
-    //         }
-    //         break;
-    //       }
-    //     case '700':
-    //     case '711':
-    //     case '721':
-    //     case '731':
-    //     case '741':
-    //     case '751':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: 'fog',
-    //           weatherIcoSymbol: "L"
-    //         }
-    //         break;
-    //       }
-    //     case '800':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: ' nature sun',
-    //           weatherIcoSymbol: "B"
-    //         }
-    //         break;
-    //       }
-    //     case '801':
-    //     case '802':
-    //     case '803':
-    //     case '804':
-    //       {
-    //         weatherInfo = {
-    //           weatherWordToSearch: 'cloudy',
-    //           weatherIcoSymbol: "Y"
-    //         }
-    //         break;
-    //       }
-    //
-    //   }
-    //   console.log(weatherInfo);
-    //   this.setState({weatherIcoSymbol: weatherInfo.weatherIcoSymbol})
-    //   return weatherInfo;
-    // }
-
   }, {
     key: 'getWeatherName',
     value: function getWeatherName(data) {
@@ -38852,9 +38761,20 @@ var Callendar = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this5 = this;
+
       console.log('loading weather');
       this.getWeather();
       this.set16dayWeatherData();
+
+      this.interval = setInteraval(function () {
+        _this5.getWeather();
+      }, 60000);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(this.interval);
     }
   }, {
     key: 'render',
@@ -38938,13 +38858,10 @@ var DisplayToday = function (_React$Component) {
     };
     return _this;
   }
-  // state prepared for future features
-
 
   _createClass(DisplayToday, [{
     key: 'render',
     value: function render() {
-
       return _react2.default.createElement(
         'section',
         { className: 'display-today' },
@@ -39388,7 +39305,6 @@ var WeekHeader = function (_React$Component) {
   _createClass(WeekHeader, [{
     key: 'render',
     value: function render() {
-
       var result = this.weekArray.map(function (el) {
         return _react2.default.createElement(
           'li',
@@ -39531,18 +39447,14 @@ var CallendarContent = function (_React$Component) {
           { key: _i, className: _i === dayOfMonth + firstWeekdayOfMonth - 1 ? "today" : "single-month-day" },
           _react2.default.createElement(
             'span',
-            { key: dayNumber, style: {
-                color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'
-              } },
+            { key: dayNumber, style: { color: this.chceckIfIsHoliday(dayNumber) && '#ff084a' } },
             dayNumber,
-            ' ',
+            '\xA0',
             _react2.default.createElement('span', { className: 'weather-icon-s', 'data-icon': weatherIcon })
           ),
           _react2.default.createElement(
             'span',
-            { className: 'holiday-name', style: {
-                color: '#000'
-              } },
+            { className: 'holiday-name', style: { color: '#000' } },
             this.chceckIfIsHoliday(dayNumber)
           )
         ));

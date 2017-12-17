@@ -84,23 +84,18 @@ class CallendarContent extends React.Component {
 
       let weatherIcon = '';
       if (i > dayOfMonth + firstWeekdayOfMonth - 1) {
-        let dateInfo = this.props.weather16day[i-dayOfMonth-firstWeekdayOfMonth+1];
+        let dateInfo = this.props.weather16day[i - dayOfMonth - firstWeekdayOfMonth + 1];
         weatherIcon = WeatherHelper.getWeatherNameAndIcoByCode(dateInfo.weather.code).weatherIcoSymbol;
         console.log(i, dayOfMonth, dateInfo);
       }
 
       daysInCallendarArray.push(
-        <div key={i} className={i === dayOfMonth + firstWeekdayOfMonth - 1
-          ? "today"
-          : "single-month-day"}>
-
-          <span key={dayNumber} style={{
-            color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'
-          }}>{dayNumber} <span className="weather-icon-s" data-icon={weatherIcon}></span></span>
-
-          <span className="holiday-name" style={{
-            color: '#000'
-          }}>{this.chceckIfIsHoliday(dayNumber)}</span>
+        <div key={i} className={i === dayOfMonth + firstWeekdayOfMonth - 1 ? "today" : "single-month-day"}>
+          <span key={dayNumber} style={{color: this.chceckIfIsHoliday(dayNumber) && '#ff084a'}}>
+            {dayNumber}
+            &nbsp;<span className="weather-icon-s" data-icon={weatherIcon}></span>
+          </span>
+          <span className="holiday-name" style={{color: '#000'}}>{this.chceckIfIsHoliday(dayNumber)}</span>
         </div>
       );
       dayNumber++;
@@ -109,6 +104,6 @@ class CallendarContent extends React.Component {
       <div className="callendar-content">{daysInCallendarArray}</div>
     );
   }
-  }
+}
 
 module.exports = CallendarContent;

@@ -390,18 +390,15 @@ body {
             font-family: 'MeteoconsRegular';
             font-size: 2.6vmax;
             line-height: 2vw;
-            color: #fff;
+            color: #000;
             content: attr(data-icon);
             @include breakpoint (tablet) {
-              font-size: 1vmax;
-              margin-left: 1%;
-              line-height: 1;
-              align-self: baseline;
+              font-size: 2vmax;
+              line-height: 1vmax;
             }
             @include breakpoint (desktop) {
               font-size: 1vmax;
               line-height: 1;
-              align-self: baseline;
             }
           }
         }

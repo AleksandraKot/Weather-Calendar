@@ -14,10 +14,8 @@ class DisplayToday extends React.Component {
       year: currentDate.format('YY')
     }
   }
-  // state prepared for future features
+
   render() {
-
-
     return (
       <section className="display-today">
         <div className="today-content-wrapper">

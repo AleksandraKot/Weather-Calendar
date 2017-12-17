@@ -18,11 +18,10 @@ class WeekHeader extends React.Component {
   }
 
   render() {
-
     let result = this.weekArray.map((el) => {
       return (
         <li key={el} className="day-of-week">{el}</li>
-      )
+      );
     });
 
     return (
@@ -32,7 +31,7 @@ class WeekHeader extends React.Component {
         </ul>
         <div className='week-underline'></div>
       </div>
-    )
+    );
   }
 }
 module.exports = WeekHeader;
