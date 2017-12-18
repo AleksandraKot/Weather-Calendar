@@ -38682,6 +38682,7 @@ var Callendar = function (_React$Component) {
 
   // Weather API:
 
+
   _createClass(Callendar, [{
     key: 'getWeather',
     value: function getWeather() {
@@ -38690,7 +38691,6 @@ var Callendar = function (_React$Component) {
       fetch(weatherApiUrl + '?key=758cdf875de14d1aa6cd09b0da23303b&ip=auto&lang=pl', { method: 'GET' }).then(function (resp) {
         if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
       }).then(function (data) {
-        console.log(data);
         _this2.setState({ temp: data.data[0].temp, weatherDescription: data.data[0].weather.description });
         _this2.getWeatherName(data);
       }).catch(function (err) {
@@ -38701,7 +38701,6 @@ var Callendar = function (_React$Component) {
     key: 'getWeatherName',
     value: function getWeatherName(data) {
       var weatherCode = data.data[0].weather.code;
-      console.log(weatherCode);
       var weatherInfo = _WeatherHelper2.default.getWeatherNameAndIcoByCode(weatherCode);
       this.setState({
         weatherIcoSymbol: weatherInfo.weatherIcoSymbol,
@@ -38739,8 +38738,6 @@ var Callendar = function (_React$Component) {
       }).then(function (resp) {
         if (resp.ok) return resp.json();else throw new Error('Błąd sieci!');
       }).then(function (data) {
-        console.log(data);
-        console.log(data.urls.regular);
         _this4.setBg(data.urls.regular);
         _this4.setAuthorOfPhoto(data.user.name);
       }).catch(function (err) {
@@ -38761,21 +38758,18 @@ var Callendar = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _this5 = this;
-
-      console.log('loading weather');
       this.getWeather();
       this.set16dayWeatherData();
 
-      this.interval = setInteraval(function () {
-        _this5.getWeather();
-      }, 60000);
+      // this.interval = setInteraval(() => {
+      //   this.getWeather();
+      // }, 60000);
     }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      clearInterval(this.interval);
-    }
+
+    // componentWillUnmount() {
+    //   clearInterval(this.interval);
+    // }
+
   }, {
     key: 'render',
     value: function render() {
@@ -39423,8 +39417,6 @@ var CallendarContent = function (_React$Component) {
         return null;
       }
 
-      console.log("Ola", this.props.weather16day);
-
       for (var i = 1; i < firstWeekdayOfMonth; i++) {
         daysInCallendarArray.push(_react2.default.createElement('div', { key: i, className: 'previous-month-day' }));
       }
@@ -39436,10 +39428,9 @@ var CallendarContent = function (_React$Component) {
       for (var _i = firstWeekdayOfMonth; _i < totalNumberOfDays; _i++) {
 
         var weatherIcon = '';
-        if (_i > dayOfMonth + firstWeekdayOfMonth - 1) {
+        if (_i > dayOfMonth + firstWeekdayOfMonth - 1 && _i - dayOfMonth - firstWeekdayOfMonth + 1 < 16) {
           var dateInfo = this.props.weather16day[_i - dayOfMonth - firstWeekdayOfMonth + 1];
           weatherIcon = _WeatherHelper2.default.getWeatherNameAndIcoByCode(dateInfo.weather.code).weatherIcoSymbol;
-          console.log(_i, dayOfMonth, dateInfo);
         }
 
         daysInCallendarArray.push(_react2.default.createElement(

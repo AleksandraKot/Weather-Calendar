@@ -22,7 +22,6 @@ class Callendar extends React.Component {
   }
 
   // Weather API:
-
   getWeather() {
 
       fetch(weatherApiUrl + '?key=758cdf875de14d1aa6cd09b0da23303b&ip=auto&lang=pl', {method: 'GET'}).then(resp => {
@@ -32,7 +31,6 @@ class Callendar extends React.Component {
           throw new Error('Błąd sieci!');
         }
       ).then(data => {
-        console.log(data);
         this.setState({temp: data.data[0].temp, weatherDescription: data.data[0].weather.description});
         this.getWeatherName(data);
       }).catch(err => {
@@ -42,7 +40,6 @@ class Callendar extends React.Component {
 
   getWeatherName(data) {
     let weatherCode = data.data[0].weather.code;
-    console.log(weatherCode);
     let weatherInfo = WeatherHelper.getWeatherNameAndIcoByCode(weatherCode);
     this.setState({
       weatherIcoSymbol: weatherInfo.weatherIcoSymbol,
@@ -82,8 +79,6 @@ class Callendar extends React.Component {
         throw new Error('Błąd sieci!');
       }
     ).then(data => {
-      console.log(data);
-      console.log(data.urls.regular);
       this.setBg(data.urls.regular);
       this.setAuthorOfPhoto(data.user.name);
     }).catch(err => {
@@ -105,18 +100,17 @@ class Callendar extends React.Component {
   }
 
   componentDidMount() {
-    console.log('loading weather');
     this.getWeather();
     this.set16dayWeatherData();
 
-    this.interval = setInteraval(() => {
-      this.getWeather();
-    }, 60000);
+    // this.interval = setInteraval(() => {
+    //   this.getWeather();
+    // }, 60000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
   render() {
     return (

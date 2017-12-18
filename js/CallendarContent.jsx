@@ -68,7 +68,6 @@ class CallendarContent extends React.Component {
       return null;
     }
 
-    console.log("Ola", this.props.weather16day);
 
     for (let i = 1; i < firstWeekdayOfMonth; i++) {
       daysInCallendarArray.push(
@@ -83,10 +82,9 @@ class CallendarContent extends React.Component {
     for (let i = firstWeekdayOfMonth; i < totalNumberOfDays; i++) {
 
       let weatherIcon = '';
-      if (i > dayOfMonth + firstWeekdayOfMonth - 1) {
+      if (i > dayOfMonth + firstWeekdayOfMonth - 1 && (i - dayOfMonth - firstWeekdayOfMonth + 1) < 16) {
         let dateInfo = this.props.weather16day[i - dayOfMonth - firstWeekdayOfMonth + 1];
         weatherIcon = WeatherHelper.getWeatherNameAndIcoByCode(dateInfo.weather.code).weatherIcoSymbol;
-        console.log(i, dayOfMonth, dateInfo);
       }
 
       daysInCallendarArray.push(
