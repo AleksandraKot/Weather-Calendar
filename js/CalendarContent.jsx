@@ -3,7 +3,7 @@ import moment from 'moment';
 import WeatherHelper from './WeatherHelper.js';
 moment.locale('pl');
 
-class CallendarContent extends React.Component {
+class CalendarContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,9 +99,9 @@ class CallendarContent extends React.Component {
       dayNumber++;
     }
     return (
-      <div className="callendar-content">{daysInCallendarArray}</div>
+      <div className="calendar-content">{daysInCallendarArray}</div>
     );
   }
 }
 
-module.exports = CallendarContent;
+module.exports = CalendarContent;

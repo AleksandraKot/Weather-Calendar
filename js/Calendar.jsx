@@ -1,6 +1,6 @@
 import React from 'react';
 import DisplayToday from './DisplayToday.jsx';
-import CallendarBody from './CallendarBody.jsx';
+import CalendarBody from './CalendarBody.jsx';
 import WeatherHelper from './WeatherHelper.js';
 import moment from 'moment';
 const weatherApiUrl = 'http://api.weatherbit.io/v2.0/current';
@@ -8,7 +8,7 @@ const weatherApi16DaysUrl = 'http://api.weatherbit.io/v2.0/forecast/daily';
 const unsplashApiUrl = 'https://api.unsplash.com/photos/random';
 const unsplashUrl = 'https://www.unsplash.com';
 
-class Callendar extends React.Component {
+class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,12 +114,12 @@ class Callendar extends React.Component {
 
   render() {
     return (
-      <div className="callendar-bg">
-        <div id="callendar-wrapper">
+      <div className="calendar-bg">
+        <div id="calendar-wrapper">
           <DisplayToday temp={this.state.temp} weatherDescription={this.state.weatherDescription} weatherIcoSymbol={this.state.weatherIcoSymbol}/>
-          <CallendarBody weather16day={this.state.weather16day}/>
+          <CalendarBody weather16day={this.state.weather16day}/>
         </div>
-        <button className="button-change-bg" onClick={this.handleChangeBgImg}>Nie podoba Ci się tło?</button>
+        <button className="button-change-bg" onClick={this.handleChangeBgImg}>Zmień tło</button>
         <div className="credentials">
           Zdjęcie {this.state.author} z <a href={unsplashUrl} target="_blank">Unsplash</a>
         </div>
@@ -127,4 +127,4 @@ class Callendar extends React.Component {
     )
   }
 }
-module.exports = Callendar;
+module.exports = Calendar;

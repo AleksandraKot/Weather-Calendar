@@ -7,7 +7,7 @@
   font-weight: normal;
   font-style: normal; }
 
-.callendar-bg .callendar-body .callendar-content .previous-month-day, .callendar-bg .callendar-body .callendar-content .single-month-day, .callendar-bg .callendar-body .today {
+.calendar-bg .calendar-body .calendar-content .previous-month-day, .calendar-bg .calendar-body .calendar-content .single-month-day, .calendar-bg .calendar-body .today {
   max-width: 14.2%;
   max-height: 20vmin;
   display: flex;
@@ -32,14 +32,14 @@ body {
   font-size: 10px;
   min-width: 100%; }
 
-.callendar-bg {
+.calendar-bg {
   min-height: 100vh;
   padding: 5vh 0;
   background-color: #d9d9d9; }
-  .callendar-bg .button-change-bg {
+  .calendar-bg .button-change-bg {
     display: none; }
     @media (min-width: 600px) {
-      .callendar-bg .button-change-bg {
+      .calendar-bg .button-change-bg {
         display: block;
         padding: 8px 18px;
         background-color: #ff084a;
@@ -54,9 +54,9 @@ body {
         top: 3vh;
         right: 0; } }
     @media (min-width: 1200px) {
-      .callendar-bg .button-change-bg {
+      .calendar-bg .button-change-bg {
         font-size: 1.2vmax; } }
-  .callendar-bg .credentials {
+  .calendar-bg .credentials {
     text-align: center;
     padding: 15px;
     color: #fff;
@@ -65,248 +65,248 @@ body {
     justify-content: center;
     width: 100vw; }
     @media (min-width: 600px) {
-      .callendar-bg .credentials {
+      .calendar-bg .credentials {
         position: absolute;
         left: 3px;
         top: 5px;
         font-size: 1.3vmax;
         text-align: left; } }
     @media (min-width: 1200px) {
-      .callendar-bg .credentials {
+      .calendar-bg .credentials {
         font-size: 1vmax; } }
-  .callendar-bg #callendar-wrapper {
+  .calendar-bg #calendar-wrapper {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-direction: column; }
     @media (min-width: 600px) {
-      .callendar-bg #callendar-wrapper {
+      .calendar-bg #calendar-wrapper {
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: flex-start;
         margin: 2%;
         min-width: 90vw; } }
     @media (min-width: 1200px) {
-      .callendar-bg #callendar-wrapper {
+      .calendar-bg #calendar-wrapper {
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: flex-start;
         max-height: 70vh; } }
-    .callendar-bg #callendar-wrapper .display-today {
+    .calendar-bg #calendar-wrapper .display-today {
       border-radius: 6px 6px 0 6px;
       display: flex;
       justify-content: center;
       margin: 0 auto;
-      border: 3px solid #5963a9;
+      border: 3px solid #96bbe6;
       width: 95%;
       padding: 1%;
       background-color: #fff;
       background-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5); }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .display-today {
+        .calendar-bg #calendar-wrapper .display-today {
           color: #b7bfc8;
           text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
           outline: 1px dashed #111d26;
           outline-offset: -6px;
           width: 23vmax;
           max-width: 300px;
-          background-color: #5963a9;
+          background-color: #96bbe6;
           margin: 0; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .display-today {
+        .calendar-bg #calendar-wrapper .display-today {
           width: 16vmax;
           max-width: 300px;
-          background-color: #5963a9;
+          background-color: #96bbe6;
           margin: 0; } }
-    .callendar-bg #callendar-wrapper .today-content-wrapper {
+    .calendar-bg #calendar-wrapper .today-content-wrapper {
       width: 93%;
       padding-bottom: 2%; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .today-content-wrapper {
+        .calendar-bg #calendar-wrapper .today-content-wrapper {
           display: flex;
           flex-direction: column;
           align-items: center; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .today-content-wrapper {
+        .calendar-bg #calendar-wrapper .today-content-wrapper {
           display: flex;
           flex-direction: column;
           align-items: center; } }
-    .callendar-bg #callendar-wrapper .month-and-year {
+    .calendar-bg #calendar-wrapper .month-and-year {
       font-size: 10vw;
       font-weight: 300; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .month-and-year {
+        .calendar-bg #calendar-wrapper .month-and-year {
           font-size: 3vw;
           color: #fff;
           padding-bottom: 1%; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .month-and-year {
+        .calendar-bg #calendar-wrapper .month-and-year {
           font-size: 2vw;
           color: #fff;
           padding-bottom: 1%; } }
-    .callendar-bg #callendar-wrapper .day-container {
+    .calendar-bg #calendar-wrapper .day-container {
       display: flex;
       justify-content: space-between;
       width: 95%;
       align-items: baseline; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .day-container {
+        .calendar-bg #calendar-wrapper .day-container {
           display: flex;
           flex-direction: column;
           width: 95%;
           align-items: center; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .day-container {
+        .calendar-bg #calendar-wrapper .day-container {
           display: flex;
           flex-direction: column;
           width: 95%;
           align-items: center; } }
-      .callendar-bg #callendar-wrapper .day-container .day-name {
+      .calendar-bg #calendar-wrapper .day-container .day-name {
         font-size: 12vw;
-        color: #5963a9;
+        color: #96bbe6;
         font-weight: 700;
         line-height: 1; }
         @media (min-width: 600px) {
-          .callendar-bg #callendar-wrapper .day-container .day-name {
+          .calendar-bg #calendar-wrapper .day-container .day-name {
             font-size: 3vmax;
             order: 1;
             line-height: 1;
             color: #fff;
             padding-top: 1vmax; } }
         @media (min-width: 1200px) {
-          .callendar-bg #callendar-wrapper .day-container .day-name {
+          .calendar-bg #calendar-wrapper .day-container .day-name {
             font-size: 2vmax;
             order: 1;
             line-height: 1;
             color: #fff;
             padding-top: 0.6vmax; } }
-      .callendar-bg #callendar-wrapper .day-container .day-nb {
+      .calendar-bg #calendar-wrapper .day-container .day-nb {
         font-size: 20vw;
         font-weight: 700;
-        color: #5963a9;
+        color: #96bbe6;
         line-height: 1.6; }
         @media (min-width: 600px) {
-          .callendar-bg #callendar-wrapper .day-container .day-nb {
+          .calendar-bg #calendar-wrapper .day-container .day-nb {
             font-size: 9vmax;
             order: 0;
             line-height: 1;
             color: #fff; } }
         @media (min-width: 1200px) {
-          .callendar-bg #callendar-wrapper .day-container .day-nb {
+          .calendar-bg #calendar-wrapper .day-container .day-nb {
             font-size: 7vmax;
             order: 0;
             line-height: 1;
             color: #fff; } }
-    .callendar-bg #callendar-wrapper .day-undeline {
+    .calendar-bg #calendar-wrapper .day-undeline {
       width: 95%;
       height: 1px;
       background-color: #000;
       margin-bottom: 3%; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .day-undeline {
+        .calendar-bg #calendar-wrapper .day-undeline {
           margin: 8% 0 3.5%;
           background-color: #fff;
           width: 98%; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .day-undeline {
+        .calendar-bg #calendar-wrapper .day-undeline {
           margin: 8% 0 3.5%;
           background-color: #fff;
           width: 98%; } }
-    .callendar-bg #callendar-wrapper .weather-description {
+    .calendar-bg #calendar-wrapper .weather-description {
       font-size: 6vw;
       font-weight: 400;
       font-style: italic; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .weather-description {
+        .calendar-bg #calendar-wrapper .weather-description {
           font-size: 2vmax;
           align-self: flex-start;
           color: #fff;
           margin-bottom: 10%;
           font-weight: 300; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .weather-description {
+        .calendar-bg #calendar-wrapper .weather-description {
           font-size: 1.4vmax;
           align-self: flex-start;
           color: #fff;
           margin-bottom: 10%;
           font-weight: 300; } }
-    .callendar-bg #callendar-wrapper .temperature-container {
+    .calendar-bg #calendar-wrapper .temperature-container {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       width: 95%;
       align-items: flex-end; }
-    .callendar-bg #callendar-wrapper .temp-label {
+    .calendar-bg #calendar-wrapper .temp-label {
       font-size: 4vw;
       font-weight: 300; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .temp-label {
+        .calendar-bg #calendar-wrapper .temp-label {
           font-size: 1.8vmax;
           color: #fff;
           flex-direction: column; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .temp-label {
+        .calendar-bg #calendar-wrapper .temp-label {
           font-size: 1.3vmax;
           color: #fff;
           flex-direction: column; } }
-    .callendar-bg #callendar-wrapper .degrees {
+    .calendar-bg #calendar-wrapper .degrees {
       font-size: 8vw; }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .degrees {
+        .calendar-bg #calendar-wrapper .degrees {
           font-size: 2.5vmax;
           font-weight: 400; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .degrees {
+        .calendar-bg #calendar-wrapper .degrees {
           font-size: 2.2vmax;
           font-weight: 400; } }
-    .callendar-bg #callendar-wrapper .weather-icon:before {
+    .calendar-bg #calendar-wrapper .weather-icon:before {
       font-family: 'MeteoconsRegular';
       font-size: 25vw;
       line-height: 25vw;
-      color: #5963a9;
+      color: #96bbe6;
       content: attr(data-icon); }
       @media (min-width: 600px) {
-        .callendar-bg #callendar-wrapper .weather-icon:before {
+        .calendar-bg #calendar-wrapper .weather-icon:before {
           font-size: 5.5vmax;
           margin-left: 1%;
           line-height: 1;
           color: #fff;
           align-self: baseline; } }
       @media (min-width: 1200px) {
-        .callendar-bg #callendar-wrapper .weather-icon:before {
+        .calendar-bg #calendar-wrapper .weather-icon:before {
           font-size: 4.5vmax;
           line-height: 1;
           color: #fff;
           align-self: baseline; } }
-  .callendar-bg .callendar-body {
+  .calendar-bg .calendar-body {
     width: 95%;
     height: 50vmax;
     border-radius: 0 6px 6px 6px;
-    border: 3px solid #5963a9;
+    border: 3px solid #96bbe6;
     margin: 3% auto 0;
     background-color: #fff;
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5); }
     @media (min-width: 600px) {
-      .callendar-bg .callendar-body {
+      .calendar-bg .calendar-body {
         margin: 35px 0 0;
-        border-top: 10px solid #5963a9;
-        border-bottom: 10px solid #5963a9;
+        border-top: 10px solid #96bbe6;
+        border-bottom: 10px solid #96bbe6;
         border-left: 0;
         border-right: 0;
         width: 80vmax;
         height: 25%; } }
     @media (min-width: 1200px) {
-      .callendar-bg .callendar-body {
+      .calendar-bg .calendar-body {
         margin: 35px 0 0;
-        border-top: 10px solid #5963a9;
-        border-bottom: 10px solid #5963a9;
+        border-top: 10px solid #96bbe6;
+        border-bottom: 10px solid #96bbe6;
         border-left: 0;
         border-right: 0;
         width: 60vmax;
         height: 35vmax; } }
-    .callendar-bg .callendar-body .week-header > ul {
+    .calendar-bg .calendar-body .week-header > ul {
       display: flex;
       align-items: center;
       list-style-type: none;
@@ -314,21 +314,21 @@ body {
       width: 100%;
       padding: 2%;
       color: #111d26; }
-      .callendar-bg .callendar-body .week-header > ul .day-of-week {
+      .calendar-bg .calendar-body .week-header > ul .day-of-week {
         font-size: 3vw;
         width: 14.2%; }
         @media (min-width: 600px) {
-          .callendar-bg .callendar-body .week-header > ul .day-of-week {
+          .calendar-bg .calendar-body .week-header > ul .day-of-week {
             font-size: 1.8vw; } }
         @media (min-width: 1200px) {
-          .callendar-bg .callendar-body .week-header > ul .day-of-week {
+          .calendar-bg .calendar-body .week-header > ul .day-of-week {
             font-size: 1.3vw; } }
-    .callendar-bg .callendar-body .week-underline {
+    .calendar-bg .calendar-body .week-underline {
       width: 98%;
       height: 1px;
       background-color: #000;
       margin: 0 auto; }
-    .callendar-bg .callendar-body .callendar-content {
+    .calendar-bg .calendar-body .calendar-content {
       width: 100%;
       height: 90%;
       display: flex;
@@ -337,65 +337,64 @@ body {
       padding: 2% 0 0;
       align-content: stretch; }
       @media (min-width: 600px) {
-        .callendar-bg .callendar-body .callendar-content {
+        .calendar-bg .calendar-body .calendar-content {
           min-height: 30vmax;
-          justify-content: center;
+          justify-content: flex-start;
           margin: auto 0; } }
       @media (min-width: 1200px) {
-        .callendar-bg .callendar-body .callendar-content {
+        .calendar-bg .calendar-body .calendar-content {
           min-height: 30vmax;
-          justify-content: center;
           margin: auto 0; } }
-      .callendar-bg .callendar-body .callendar-content .single-month-day:nth-child(7n) {
+      .calendar-bg .calendar-body .calendar-content .single-month-day:nth-child(7n) {
         color: #ff084a; }
       @media (min-width: 600px) {
-        .callendar-bg .callendar-body .callendar-content .single-month-day {
+        .calendar-bg .calendar-body .calendar-content .single-month-day {
           font-size: 2vw; } }
       @media (min-width: 1200px) {
-        .callendar-bg .callendar-body .callendar-content .single-month-day {
+        .calendar-bg .calendar-body .calendar-content .single-month-day {
           font-size: 1.7vw; } }
-      .callendar-bg .callendar-body .callendar-content .single-month-day .weather-icon-s:before {
+      .calendar-bg .calendar-body .calendar-content .single-month-day .weather-icon-s:before {
         font-family: 'MeteoconsRegular';
         font-size: 2.6vmax;
         line-height: 2vw;
         color: #000;
         content: attr(data-icon); }
         @media (min-width: 600px) {
-          .callendar-bg .callendar-body .callendar-content .single-month-day .weather-icon-s:before {
+          .calendar-bg .calendar-body .calendar-content .single-month-day .weather-icon-s:before {
             font-size: 2vmax;
             line-height: 1vmax; } }
         @media (min-width: 1200px) {
-          .callendar-bg .callendar-body .callendar-content .single-month-day .weather-icon-s:before {
+          .calendar-bg .calendar-body .calendar-content .single-month-day .weather-icon-s:before {
             font-size: 1vmax;
             line-height: 1; } }
-      .callendar-bg .callendar-body .callendar-content .holiday {
+      .calendar-bg .calendar-body .calendar-content .holiday {
         color: #ff084a; }
-      .callendar-bg .callendar-body .callendar-content .holiday-name {
+      .calendar-bg .calendar-body .calendar-content .holiday-name {
         font-size: 0.8em;
         font-weight: 500; }
         @media (min-width: 600px) {
-          .callendar-bg .callendar-body .callendar-content .holiday-name {
+          .calendar-bg .calendar-body .calendar-content .holiday-name {
             font-size: 1.8vw; } }
         @media (min-width: 1200px) {
-          .callendar-bg .callendar-body .callendar-content .holiday-name {
+          .calendar-bg .calendar-body .calendar-content .holiday-name {
             font-size: 1vw; } }
-    .callendar-bg .callendar-body .today {
-      border: 3px solid #5963a9;
+    .calendar-bg .calendar-body .today {
+      border: 3px solid #96bbe6;
       border-radius: 4px;
-      background-color: #5963a9;
+      background-color: #96bbe6;
       color: white;
       text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.5);
       outline: 1px dashed #111d26;
       outline-offset: -4px;
       box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5); }
-      .callendar-bg .callendar-body .today:nth-child(7n) {
+      .calendar-bg .calendar-body .today:nth-child(7n) {
         color: #ff084a; }
       @media (min-width: 600px) {
-        .callendar-bg .callendar-body .today {
+        .calendar-bg .calendar-body .today {
           font-size: 2vw;
           outline-offset: -4px; } }
       @media (min-width: 1200px) {
-        .callendar-bg .callendar-body .today {
+        .calendar-bg .calendar-body .today {
           font-size: 1.7vw;
           outline-offset: -6px; } }
 

@@ -14,7 +14,7 @@ body {
   min-width: 100%;
 }
 
-.callendar-bg {
+.calendar-bg {
   min-height: 100vh;
   padding: 5vh 0;
   background-color: #d9d9d9;
@@ -61,7 +61,7 @@ body {
     }
   }
 
-  #callendar-wrapper {
+  #calendar-wrapper {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -294,7 +294,7 @@ body {
     }
   }
 
-  .callendar-body {
+  .calendar-body {
     width: 95%;
     height: 50vmax;
     border-radius: 0 6px 6px 6px;
@@ -350,7 +350,7 @@ body {
       margin: 0 auto;
     }
 
-    .callendar-content {
+    .calendar-content {
       width: 100%;
       height: 90%;
       display: flex;
@@ -360,12 +360,11 @@ body {
       align-content: stretch;
       @include breakpoint (tablet) {
         min-height: 30vmax;
-        justify-content: center;
+        justify-content: flex-start;
         margin: auto 0;
       }
       @include breakpoint (desktop) {
         min-height: 30vmax;
-        justify-content: center;
         margin: auto 0;
       }
 

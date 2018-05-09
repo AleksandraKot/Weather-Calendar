@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Callendar from './Callendar.jsx';
+import Calendar from './Calendar.jsx';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Callendar />
+        <Calendar />
       </div>
   )
   }
