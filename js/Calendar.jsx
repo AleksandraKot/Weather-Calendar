@@ -91,7 +91,7 @@ class Calendar extends React.Component {
   }
 
   setBg(imgUrl) {
-    let container = document.querySelector('.callendar-bg');
+    let container = document.querySelector('.calendar-bg');
     container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
   }
 

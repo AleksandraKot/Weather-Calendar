@@ -38766,7 +38766,7 @@ var Calendar = function (_React$Component) {
   }, {
     key: 'setBg',
     value: function setBg(imgUrl) {
-      var container = document.querySelector('.callendar-bg');
+      var container = document.querySelector('.calendar-bg');
       container.style.background = 'url("' + imgUrl + '") center/cover no-repeat';
     }
   }, {
