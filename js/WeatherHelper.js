@@ -1,7 +1,7 @@
 module.exports = {
   getWeatherNameAndIcoByCode: function(weatherCode) {
     let weatherInfo;
-    switch (weatherCode) {
+    switch (weatherCode.toString()) {
       case '200':
       case '201':
       case '202':
