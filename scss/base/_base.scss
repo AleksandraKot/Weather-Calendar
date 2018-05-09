@@ -1,445 +1,419 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Barlow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow', Arial, sans-serif;
 }
 
 html {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 body {
-  font-size: $baseFontSize;
-  min-width: 100%;
+    font-size: $baseFontSize;
+    min-width: 100%;
 }
 
 .calendar-bg {
-  min-height: 100vh;
-  padding: 5vh 0;
-  background-color: #d9d9d9;
-
-  .button-change-bg {
-    display: none;
-    @include breakpoint (tablet) {
-      display: block;
-      padding: 8px 18px;
-      background-color: $secondaryColor;
-      color: #fff;
-      border: 1px solid $secondaryColor;
-      border-radius: 6px 0 0 6px;
-      box-shadow: 0 0.05em 0.25em $shadowColor;
-      font-size: 1.6vmax;
-      font-weight: 300;
-      text-shadow: 0 -.05em 0.05em $shadowColor;
-      position: absolute;
-      top: 3vh;
-      right: 0;
-    }
-    @include breakpoint (desktop) {
-      font-size: 1.2vmax;
-    }
-  }
-
-  .credentials {
-    text-align: center;
-    padding: 15px;
-    color: #fff;
-    font-size: 2.2vmax;
-    font-weight: 300;
-    justify-content: center;
-    width: 100vw;
-    @include breakpoint(tablet) {
-      position: absolute;
-      left: 3px;
-      top: 5px;
-      font-size: 1.3vmax;
-      text-align: left;
-    }
-    @include breakpoint(desktop) {
-      font-size: 1vmax;
-    }
-  }
-
-  #calendar-wrapper {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    @include breakpoint (tablet) {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      margin: 2%;
-      min-width: 90vw;
-    }
-    @include breakpoint (desktop) {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      max-height: 70vh;
-    }
-
-    .display-today {
-      border-radius: 6px 6px 0 6px;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      border: 3px solid $primaryColor;
-      width: 95%;
-      padding: 1%;
-      background-color: #fff;
-      background-color: $callendarBgColor;
-      box-shadow: 0 0.05em 0.25em $shadowColor;
-      @include breakpoint (tablet) {
-        color: hsl(210, 13%, 75%);
-        text-shadow: 0 -1px 1px $shadowColor;
-        outline: 1px dashed $darkTextColor;
-        outline-offset: -6px;
-        width: 23vmax;
-        max-width: 300px;
-        background-color: $primaryColor;
-        margin: 0;
-      }
-      @include breakpoint (desktop) {
-        width: 16vmax;
-        max-width: 300px;
-        background-color: $primaryColor;
-        margin: 0;
-      }
-    }
-
-    .today-content-wrapper {
-      width: 93%;
-      padding-bottom: 2%;
-      @include breakpoint (tablet) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      @include breakpoint (desktop) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    .month-and-year {
-      font-size: 10vw;
-      font-weight: 300;
-      @include breakpoint (tablet) {
-        font-size: 3vw;
-        color: #fff;
-        padding-bottom: 1%;
-      }
-      @include breakpoint (desktop) {
-        font-size: 2vw;
-        color: #fff;
-        padding-bottom: 1%;
-      }
-    }
-
-    .day-container {
-      display: flex;
-      justify-content: space-between;
-      width: 95%;
-      align-items: baseline;
-      @include breakpoint (tablet) {
-        display: flex;
-        flex-direction: column;
-        width: 95%;
-        align-items: center;
-      }
-      @include breakpoint (desktop) {
-        display: flex;
-        flex-direction: column;
-        width: 95%;
-        align-items: center;
-      }
-
-      .day-name {
-        font-size: 12vw;
-        color: $primaryColor;
-        font-weight: 700;
-        line-height: 1;
+    min-height: 100vh;
+    padding: 5vh 0;
+    background-color: #d9d9d9;
+    .button-change-bg {
+        display: none;
         @include breakpoint (tablet) {
-          font-size: 3vmax;
-          order: 1;
-          line-height: 1;
-          color: #fff;
-          padding-top: 1vmax;
+            display: block;
+            padding: 8px 18px;
+            background-color: $secondaryColor;
+            color: #fff;
+            border: 1px solid $secondaryColor;
+            border-radius: 6px 0 0 6px;
+            box-shadow: 0 0.05em 0.25em $shadowColor;
+            font-size: 1.6vmax;
+            font-weight: 300;
+            text-shadow: 0 -.05em 0.05em $shadowColor;
+            position: absolute;
+            top: 3vh;
+            right: 0;
         }
         @include breakpoint (desktop) {
-          font-size: 2vmax;
-          order: 1;
-          line-height: 1;
-          color: #fff;
-          padding-top: 0.6vmax;
+            font-size: 1.2vmax;
         }
-      }
-
-      .day-nb {
-        font-size: 20vw;
-        font-weight: 700;
-        color: $primaryColor;
-        line-height: 1.6;
-        @include breakpoint (tablet) {
-          font-size: 9vmax;
-          order: 0;
-          line-height: 1;
-          color: #fff;
-        }
-        @include breakpoint (desktop) {
-          font-size: 7vmax;
-          order: 0;
-          line-height: 1;
-          color: #fff;
-        }
-      }
     }
-
-    .day-undeline {
-      width: 95%;
-      height: 1px;
-      background-color: #000;
-      margin-bottom: 3%;
-      @include breakpoint (tablet) {
-        margin: 8% 0 3.5%;
-        background-color: #fff;
-        width: 98%;
-      }
-      @include breakpoint (desktop) {
-        margin: 8% 0 3.5%;
-        background-color: #fff;
-        width: 98%;
-      }
-    }
-
-    .weather-description {
-      font-size: 6vw;
-      font-weight: 400;
-      font-style: italic;
-      @include breakpoint (tablet) {
-        font-size: 2vmax;
-        align-self: flex-start;
+    .credentials {
+        text-align: center;
+        padding: 15px;
         color: #fff;
-        margin-bottom: 10%;
-        font-weight: 300;
-      }
-      @include breakpoint (desktop) {
-        font-size: 1.4vmax;
-        align-self: flex-start;
-        color: #fff;
-        margin-bottom: 10%;
-        font-weight: 300;
-      }
-    }
-
-    .temperature-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 95%;
-      align-items: flex-end;
-    }
-
-    .temp-label {
-      font-size: 4vw;
-      font-weight: 300;
-      @include breakpoint (tablet) {
-        font-size: 1.8vmax;
-        color: #fff;
-        flex-direction: column;
-      }
-      @include breakpoint (desktop) {
-        font-size: 1.3vmax;
-        color: #fff;
-        flex-direction: column;
-      }
-    }
-
-    .degrees {
-      font-size: 8vw;
-      @include breakpoint (tablet) {
-        font-size: 2.5vmax;
-        font-weight: 400;
-      }
-      @include breakpoint (desktop) {
         font-size: 2.2vmax;
-        font-weight: 400;
-      }
+        font-weight: 300;
+        justify-content: center;
+        width: 100vw;
+        @include breakpoint(tablet) {
+            position: absolute;
+            left: 3px;
+            top: 5px;
+            font-size: 1.3vmax;
+            text-align: left;
+        }
+        @include breakpoint(desktop) {
+            font-size: 1vmax;
+        }
     }
-
-    .weather-icon {
-      &:before {
-        font-family: 'MeteoconsRegular';
-        font-size: 25vw;
-        line-height: 25vw;
-        color: $primaryColor;
-        content: attr(data-icon);
+    #calendar-wrapper {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         @include breakpoint (tablet) {
-          font-size: 5.5vmax;
-          margin-left: 1%;
-          line-height: 1;
-          color: #fff;
-          align-self: baseline;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            margin: 2%;
+            min-width: 90vw;
         }
         @include breakpoint (desktop) {
-          font-size: 4.5vmax;
-          line-height: 1;
-          color: #fff;
-          align-self: baseline;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            max-height: 70vh;
         }
-      }
-    }
-  }
-
-  .calendar-body {
-    width: 95%;
-    height: 50vmax;
-    border-radius: 0 6px 6px 6px;
-    border: 3px solid $primaryColor;
-    margin: 3% auto 0;
-    background-color: #fff;
-    background-color: $callendarBgColor;
-    box-shadow: 0 0.05em 0.25em $shadowColor;
-    @include breakpoint (tablet) {
-      margin: 35px 0 0;
-      border-top: 10px solid $primaryColor;
-      border-bottom: 10px solid $primaryColor;
-      border-left: 0;
-      border-right: 0;
-      width: 80vmax;
-      height: 25%;
-    }
-    @include breakpoint (desktop) {
-      margin: 35px 0 0;
-      border-top: 10px solid $primaryColor;
-      border-bottom: 10px solid $primaryColor;
-      border-left: 0;
-      border-right: 0;
-      width: 60vmax;
-      height: 35vmax;
-    }
-
-    .week-header > ul {
-      display: flex;
-      align-items: center;
-      list-style-type: none;
-      height: 10%;
-      width: 100%;
-      padding: 2%;
-      color: $darkTextColor;
-
-      .day-of-week {
-        font-size: 3vw;
-        width: 14.2%;
-        @include breakpoint (tablet) {
-          font-size: 1.8vw;
-        }
-        @include breakpoint (desktop) {
-          font-size: 1.3vw;
-        }
-      }
-    }
-
-    .week-underline {
-      width: 98%;
-      height: 1px;
-      background-color: #000;
-      margin: 0 auto;
-    }
-
-    .calendar-content {
-      width: 100%;
-      height: 90%;
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0 auto;
-      padding: 2% 0 0;
-      align-content: stretch;
-      @include breakpoint (tablet) {
-        min-height: 30vmax;
-        justify-content: flex-start;
-        margin: auto 0;
-      }
-      @include breakpoint (desktop) {
-        min-height: 30vmax;
-        margin: auto 0;
-      }
-
-      .previous-month-day {
-        @extend %single-day;
-      }
-
-      .single-month-day {
-        @extend %single-day;
-
-        &:nth-child(7n) {
-          color: $secondaryColor;
-        }
-        @include breakpoint (tablet) {
-          font-size: 2vw;
-        }
-        @include breakpoint (desktop) {
-          font-size: 1.7vw;
-        }
-        .weather-icon-s {
-          &:before {
-            font-family: 'MeteoconsRegular';
-            font-size: 2.6vmax;
-            line-height: 2vw;
-            color: #000;
-            content: attr(data-icon);
+        .display-today {
+            border-radius: 6px 6px 0 6px;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            border: 3px solid $primaryColor;
+            width: 95%;
+            padding: 1%;
+            background-color: #fff;
+            background-color: $callendarBgColor;
+            box-shadow: 0 0.05em 0.25em $shadowColor;
             @include breakpoint (tablet) {
-              font-size: 2vmax;
-              line-height: 1vmax;
+                color: hsl(210, 13%, 75%);
+                text-shadow: 0 -1px 1px $shadowColor;
+                outline: 1px dashed $darkTextColor;
+                outline-offset: -6px;
+                width: 23vmax;
+                max-width: 300px;
+                background-color: $primaryColor;
+                margin: 0;
             }
             @include breakpoint (desktop) {
-              font-size: 1vmax;
-              line-height: 1;
+                width: 16vmax;
+                max-width: 300px;
+                background-color: $primaryColor;
+                margin: 0;
             }
-          }
         }
-      }
-      .holiday {
-        color: $secondaryColor;
-      }
-
-      .holiday-name {
-        font-size: 0.8em;
-        font-weight: 500;
+        .today-content-wrapper {
+            width: 93%;
+            padding-bottom: 2%;
+            @include breakpoint (tablet) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            @include breakpoint (desktop) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .month-and-year {
+            font-size: 10vw;
+            font-weight: 300;
+            @include breakpoint (tablet) {
+                font-size: 3vw;
+                color: #fff;
+                padding-bottom: 1%;
+            }
+            @include breakpoint (desktop) {
+                font-size: 2vw;
+                color: #fff;
+                padding-bottom: 1%;
+            }
+        }
+        .day-container {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            align-items: baseline;
+            @include breakpoint (tablet) {
+                display: flex;
+                flex-direction: column;
+                width: 95%;
+                align-items: center;
+            }
+            @include breakpoint (desktop) {
+                display: flex;
+                flex-direction: column;
+                width: 95%;
+                align-items: center;
+            }
+            .day-name {
+                font-size: 12vw;
+                color: $primaryColor;
+                font-weight: 700;
+                line-height: 1;
+                @include breakpoint (tablet) {
+                    font-size: 3vmax;
+                    order: 1;
+                    line-height: 1;
+                    color: #fff;
+                    padding-top: 1vmax;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 2vmax;
+                    order: 1;
+                    line-height: 1;
+                    color: #fff;
+                    padding-top: 0.6vmax;
+                }
+            }
+            .day-nb {
+                font-size: 20vw;
+                font-weight: 700;
+                color: $primaryColor;
+                line-height: 1.6;
+                @include breakpoint (tablet) {
+                    font-size: 9vmax;
+                    order: 0;
+                    line-height: 1;
+                    color: #fff;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 7vmax;
+                    order: 0;
+                    line-height: 1;
+                    color: #fff;
+                }
+            }
+        }
+        .day-undeline {
+            width: 95%;
+            height: 1px;
+            background-color: #000;
+            margin-bottom: 3%;
+            @include breakpoint (tablet) {
+                margin: 8% 0 3.5%;
+                background-color: #fff;
+                width: 98%;
+            }
+            @include breakpoint (desktop) {
+                margin: 8% 0 3.5%;
+                background-color: #fff;
+                width: 98%;
+            }
+        }
+        .weather-description {
+            font-size: 6vw;
+            font-weight: 400;
+            font-style: italic;
+            @include breakpoint (tablet) {
+                font-size: 2vmax;
+                align-self: flex-start;
+                color: #fff;
+                margin-bottom: 10%;
+                font-weight: 300;
+            }
+            @include breakpoint (desktop) {
+                font-size: 1.4vmax;
+                align-self: flex-start;
+                color: #fff;
+                margin-bottom: 10%;
+                font-weight: 300;
+            }
+        }
+        .temperature-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 95%;
+            align-items: flex-end;
+        }
+        .temp-label {
+            font-size: 4vw;
+            font-weight: 300;
+            @include breakpoint (tablet) {
+                font-size: 1.8vmax;
+                color: #fff;
+                flex-direction: column;
+            }
+            @include breakpoint (desktop) {
+                font-size: 1.3vmax;
+                color: #fff;
+                flex-direction: column;
+            }
+        }
+        .degrees {
+            font-size: 8vw;
+            @include breakpoint (tablet) {
+                font-size: 2.5vmax;
+                font-weight: 400;
+            }
+            @include breakpoint (desktop) {
+                font-size: 2.2vmax;
+                font-weight: 400;
+            }
+        }
+        .weather-icon {
+            &:before {
+                font-family: 'MeteoconsRegular';
+                font-size: 25vw;
+                line-height: 25vw;
+                color: $primaryColor;
+                content: attr(data-icon);
+                @include breakpoint (tablet) {
+                    font-size: 5.5vmax;
+                    margin-left: 1%;
+                    line-height: 1;
+                    color: #fff;
+                    align-self: baseline;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 4.5vmax;
+                    line-height: 1;
+                    color: #fff;
+                    align-self: baseline;
+                }
+            }
+        }
+    }
+    .calendar-body {
+        width: 95%;
+        height: 50vmax;
+        border-radius: 0 6px 6px 6px;
+        border: 3px solid $primaryColor;
+        margin: 3% auto 0;
+        background-color: #fff;
+        background-color: $callendarBgColor;
+        box-shadow: 0 0.05em 0.25em $shadowColor;
         @include breakpoint (tablet) {
-          font-size: 1.8vw;
+            margin: 35px 0 0;
+            border-top: 10px solid $primaryColor;
+            border-bottom: 10px solid $primaryColor;
+            border-left: 0;
+            border-right: 0;
+            width: 80vmax;
+            height: 25%;
         }
         @include breakpoint (desktop) {
-          font-size: 1vw;
+            margin: 35px 0 0;
+            border-top: 10px solid $primaryColor;
+            border-bottom: 10px solid $primaryColor;
+            border-left: 0;
+            border-right: 0;
+            width: 60vmax;
+            height: 35vmax;
         }
-      }
+        .week-header>ul {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            height: 10%;
+            width: 100%;
+            padding: 2%;
+            color: $darkTextColor;
+            .day-of-week {
+                font-size: 3vw;
+                width: 14.2%;
+                @include breakpoint (tablet) {
+                    font-size: 1.8vw;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 1.3vw;
+                }
+            }
+        }
+        .week-underline {
+            width: 98%;
+            height: 1px;
+            background-color: #000;
+            margin: 0 auto;
+        }
+        .calendar-content {
+            width: 100%;
+            height: 90%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            padding: 2% 0 0;
+            align-content: stretch;
+            @include breakpoint (tablet) {
+                min-height: 30vmax;
+                justify-content: flex-start;
+                margin: auto 0;
+            }
+            @include breakpoint (desktop) {
+                min-height: 30vmax;
+                margin: auto 0;
+            }
+            .previous-month-day {
+                @extend %single-day;
+            }
+            .single-month-day {
+                @extend %single-day;
+                &:nth-child(7n) {
+                    color: $secondaryColor;
+                }
+                @include breakpoint (tablet) {
+                    font-size: 2vw;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 1.7vw;
+                }
+                .weather-icon-s {
+                    &:before {
+                        font-family: 'MeteoconsRegular';
+                        font-size: 2.6vmax;
+                        line-height: 2vw;
+                        color: #000;
+                        content: attr(data-icon);
+                        @include breakpoint (tablet) {
+                            font-size: 2vmax;
+                            line-height: 1vmax;
+                        }
+                        @include breakpoint (desktop) {
+                            font-size: 1vmax;
+                            line-height: 1;
+                        }
+                    }
+                }
+            }
+            .holiday {
+                color: $secondaryColor;
+            }
+            .holiday-name {
+                font-size: 0.8em;
+                font-weight: 500;
+                @include breakpoint (tablet) {
+                    font-size: 1.8vw;
+                }
+                @include breakpoint (desktop) {
+                    font-size: 1vw;
+                }
+            }
+        }
+        .today {
+            border: 3px solid $primaryColor;
+            border-radius: 4px;
+            background-color: $primaryColor;
+            color: white;
+            text-shadow: 0 -.05em 0.05em $shadowColor;
+            outline: 1px dashed $darkTextColor;
+            outline-offset: -4px;
+            box-shadow: 0 0.05em 0.25em $shadowColor;
+            @extend %single-day;
+            &:nth-child(7n) {
+                color: $secondaryColor;
+            }
+            @include breakpoint (tablet) {
+                font-size: 2vw;
+                outline-offset: -4px;
+            }
+            @include breakpoint (desktop) {
+                font-size: 1.7vw;
+                outline-offset: -6px;
+            }
+        }
     }
-
-    .today {
-      border: 3px solid $primaryColor;
-      border-radius: 4px;
-      background-color: $primaryColor;
-      color: white;
-      text-shadow: 0 -.05em 0.05em $shadowColor;
-      outline: 1px dashed $darkTextColor;
-      outline-offset: -4px;
-      box-shadow: 0 0.05em 0.25em $shadowColor;
-      @extend %single-day;
-
-      &:nth-child(7n) {
-        color: $secondaryColor;
-      }
-      @include breakpoint (tablet) {
-        font-size: 2vw;
-        outline-offset: -4px;
-      }
-      @include breakpoint (desktop) {
-        font-size: 1.7vw;
-        outline-offset: -6px;
-      }
-    }
-  }
 }
